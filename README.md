@@ -33,8 +33,9 @@ Key derived files:
 - `data_processed/yolo_g3_frozen_subset_lodo_results.csv`
 - `outputs/g3_frozen_subset_prediction_calibration_batch_summary.md`
 - `outputs/g3_frozen_subset_error_taxonomy_summary.md`
-- `figures/fig_g3_frozen_subset_lodo_matrix.svg`
-- `figures/fig_g3_frozen_subset_risk_coverage.svg`
+- `figures/fig06_g3_frozen_ordinary_vs_lodo.svg`
+- `figures/fig07_g3_frozen_risk_tradeoff.svg`
+- `figures/fig08_g3_frozen_pooled_risk_coverage.svg`
 
 ## Exclusions
 
