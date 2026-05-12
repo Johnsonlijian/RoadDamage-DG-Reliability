@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this reproducibility package, please cite the associated paper and dataset."
+title: "RoadDamage-DG Reliability Benchmark"
+authors:
+  - family-names: "Li"
+    given-names: "Johnson"
+year: 2026
+license: MIT
+repository-code: "https://github.com/Johnsonlijian/RoadDamage-DG-Reliability"
+preferred-citation:
+  type: article
+  title: "Risk-Controlled Cross-Domain Evaluation for Road-Damage Detection Under Country and Capture-Domain Shift"
+  authors:
+    - family-names: "Li"
+      given-names: "Johnson"
+  year: 2026
+  status: "in preparation"

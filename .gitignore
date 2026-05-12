@@ -1,0 +1,32 @@
+# Raw and third-party data
+data_raw/
+*.zip
+*.tar
+*.7z
+
+# Private writing and review material
+manuscript/
+submission_package/
+rounds/
+logs/
+*.docx
+*.pdf
+
+# Credentials and local environments
+.env
+*.env
+.venv/
+.venv-rdd/
+.uv-cache/
+UltralyticsConfig/
+.mplconfig/
+
+# Heavy generated outputs
+runs/
+data_processed/predictions/
+data_processed/calibration/
+*.pt
+
+# Python cache
+__pycache__/
+*.pyc
