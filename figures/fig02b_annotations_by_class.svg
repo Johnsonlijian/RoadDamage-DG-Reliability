@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="528" viewBox="0 0 960 528">
+<rect width="100%" height="100%" fill="white"/>
+<text x="32" y="38" font-family="Arial" font-size="22" font-weight="700">Damage annotations by class</text>
+<text x="32" y="90" font-family="Arial" font-size="15" fill="#222">D00</text>
+<rect x="210" y="70" width="710" height="22" fill="#3366aa"/>
+<text x="928" y="87" font-family="Arial" font-size="14" fill="#222">26016</text>
+<text x="32" y="124" font-family="Arial" font-size="15" fill="#222">D10</text>
+<rect x="210" y="104" width="322" height="22" fill="#3366aa"/>
+<text x="540" y="121" font-family="Arial" font-size="14" fill="#222">11830</text>
+<text x="32" y="158" font-family="Arial" font-size="15" fill="#222">D20</text>
+<rect x="210" y="138" width="289" height="22" fill="#3366aa"/>
+<text x="507" y="155" font-family="Arial" font-size="14" fill="#222">10617</text>
+<text x="32" y="192" font-family="Arial" font-size="15" fill="#222">D40</text>
+<rect x="210" y="172" width="178" height="22" fill="#3366aa"/>
+<text x="396" y="189" font-family="Arial" font-size="14" fill="#222">6544</text>
+<text x="32" y="226" font-family="Arial" font-size="15" fill="#222">D44</text>
+<rect x="210" y="206" width="138" height="22" fill="#3366aa"/>
+<text x="356" y="223" font-family="Arial" font-size="14" fill="#222">5057</text>
+<text x="32" y="260" font-family="Arial" font-size="15" fill="#222">D50</text>
+<rect x="210" y="240" width="97" height="22" fill="#3366aa"/>
+<text x="315" y="257" font-family="Arial" font-size="14" fill="#222">3581</text>
+<text x="32" y="294" font-family="Arial" font-size="15" fill="#222">Repair</text>
+<rect x="210" y="274" width="28" height="22" fill="#3366aa"/>
+<text x="246" y="291" font-family="Arial" font-size="14" fill="#222">1046</text>
+<text x="32" y="328" font-family="Arial" font-size="15" fill="#222">D43</text>
+<rect x="210" y="308" width="21" height="22" fill="#3366aa"/>
+<text x="239" y="325" font-family="Arial" font-size="14" fill="#222">793</text>
+<text x="32" y="362" font-family="Arial" font-size="15" fill="#222">D01</text>
+<rect x="210" y="342" width="4" height="22" fill="#3366aa"/>
+<text x="222" y="359" font-family="Arial" font-size="14" fill="#222">179</text>
+<text x="32" y="396" font-family="Arial" font-size="15" fill="#222">D11</text>
+<rect x="210" y="376" width="1" height="22" fill="#3366aa"/>
+<text x="219" y="393" font-family="Arial" font-size="14" fill="#222">45</text>
+<text x="32" y="430" font-family="Arial" font-size="15" fill="#222">Block crack</text>
+<rect x="210" y="410" width="0" height="22" fill="#3366aa"/>
+<text x="218" y="427" font-family="Arial" font-size="14" fill="#222">3</text>
+<text x="32" y="464" font-family="Arial" font-size="15" fill="#222">D0w0</text>
+<rect x="210" y="444" width="0" height="22" fill="#3366aa"/>
+<text x="218" y="461" font-family="Arial" font-size="14" fill="#222">1</text>
+</svg>

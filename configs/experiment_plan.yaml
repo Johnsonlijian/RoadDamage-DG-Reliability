@@ -1,0 +1,105 @@
+# RoadDamage-DG experiment plan, provisional.
+# Values are placeholders until data are downloaded and inspected.
+
+project: RoadDamage-DG
+created: 2026-05-11
+
+datasets:
+  primary:
+    name: RDD2022
+    source_url: "https://figshare.com/articles/dataset/RDD2022_-_The_multi-national_Road_Damage_Dataset_released_through_CRDDC_2022/21431547"
+    local_path: "[pending]"
+    role: "primary cross-national object-detection benchmark"
+  extension:
+    name: N-RDD2024
+    source_url: "https://data.mendeley.com/datasets/27c8pwsd6v/5"
+    local_path: "[pending]"
+    role: "optional ten-defect extension after RDD2022 PoC"
+
+domains:
+  initial_design:
+    - China_Drone
+    - China_MotorBike
+    - Czech_Republic
+    - India
+    - Japan
+    - Norway
+    - United_States
+  note: "Derived from RDD2022 file-list metadata. Confirm again after extracting the main ZIP."
+
+protocols:
+  g1_smoke_test:
+    purpose: "verify data conversion and detector loader only; not a paper result"
+    heldout_domain: Japan
+    max_train_per_domain: 80
+    max_val: 240
+    detector: "YOLOv8n or equivalent light detector"
+    epochs: 1
+  g2_pretrained_smoke_matrix:
+    purpose: "verify seven-domain LODO training/evaluation with local pretrained weights; not a paper result"
+    config: configs/g2_pretrained_smoke_matrix.yaml
+    matrix_csv: data_processed/yolo_g2_smoke_results.csv
+    summary: outputs/yolo_g2_smoke_results_summary.md
+    gate_report: gates/G2_pretrained_smoke_matrix_report.md
+  g2_ordinary_smoke_reference:
+    purpose: "same-scale ordinary mixed-domain smoke reference; not a paper result"
+    config: configs/g2_ordinary_smoke.yaml
+    summary: outputs/yolo_g2_ordinary_smoke_result_summary.md
+  standard_split:
+    purpose: "baseline sanity check"
+  leave_one_domain_out:
+    purpose: "primary transferability test"
+    domains:
+      - China_Drone
+      - China_MotorBike
+      - Czech_Republic
+      - India
+      - Japan
+      - Norway
+      - United_States
+  selective_prediction:
+    purpose: "uncertainty-calibrated referral gate"
+  g3_paper_grade_baseline:
+    purpose: "first manuscript-level ordinary-vs-LODO baseline gate"
+    config: configs/g3_baseline_plan.yaml
+    protocol: gates/G3_paper_grade_baseline_protocol.md
+
+model_ladder:
+  g1_loader_smoke:
+    - "YOLOv8n one-epoch sanity run on a small held-out-domain subset"
+  g2_pretrained_smoke:
+    - "YOLOv8n pretrained one-epoch seven-domain LODO smoke matrix"
+  g2_baselines:
+    - "standard pretrained detector fine-tuning under ordinary split"
+    - "standard pretrained detector under leave-one-domain-out"
+  g2_risk_control:
+    - "confidence calibration"
+    - "risk-coverage/selective prediction"
+    - "domain and defect-class failure taxonomy"
+  optional_g3_method_extensions:
+    - "domain-balanced sampling or augmentation"
+    - "light domain-generalization training choices"
+    - "foundation/pretrained feature variant only if compute and evidence justify it"
+
+metrics:
+  detection:
+    - mAP50
+    - mAP50_95
+    - precision
+    - recall
+    - F1
+  calibration:
+    - ECE
+    - risk_coverage
+    - selective_risk
+  deployment:
+    - performance_drop
+    - referral_rate
+    - residual_error_after_referral
+
+claim_policy:
+  no_result_claims_before_outputs: true
+  no_production_ready_claim: true
+  no_universal_generalization_claim: true
+  no_foundation_model_superiority_claim_before_fixed_comparison: true
+  g1_smoke_test_is_not_paper_evidence: true

@@ -1,0 +1,62 @@
+# G3 frozen subset baseline.
+# CPU-feasible evidence run selected after R07 scale decision.
+
+gate: G3_frozen_subset_baseline
+date: 2026-05-12
+status: complete
+
+purpose:
+  - upgrade the R06 timing pilot into a frozen, auditable subset-scale evidence layer
+  - preserve all prediction tables for calibration and error taxonomy
+  - keep claims explicitly bounded to subset-scale unless a later full-scale GPU run is completed
+
+dataset:
+  source_root: data_raw/RDD2022_extracted
+  task_labels: [D00, D10, D20, D40]
+  ignored_labels_policy: audit_not_merge
+  domains:
+    - China_Drone
+    - China_MotorBike
+    - Czech_Republic
+    - India
+    - Japan
+    - Norway
+    - United_States
+
+training:
+  model: yolov8n.pt
+  train_images_per_domain: 160
+  val_images_per_domain: 80
+  epochs: 4
+  image_size: 320
+  batch_size: 8
+  device: cpu
+  workers: 0
+  seed_policy: deterministic_subset_builders_seed_0
+
+outputs:
+  ordinary_root: data_processed/yolo_g3_frozen_subset_ordinary
+  lodo_root: data_processed/yolo_g3_frozen_subset_lodo
+  ordinary_project: outputs/yolo_g3_frozen_subset_ordinary
+  lodo_project: outputs/yolo_g3_frozen_subset_lodo
+  ordinary_csv: data_processed/yolo_g3_frozen_subset_ordinary_result.csv
+  lodo_csv: data_processed/yolo_g3_frozen_subset_lodo_results.csv
+  combined_summary: outputs/g3_frozen_subset_baseline_summary.md
+  prediction_summary: outputs/g3_frozen_subset_prediction_calibration_batch_summary.md
+  combined_lodo_predictions: data_processed/predictions/g3_frozen_subset_lodo_all_predictions.csv
+  lodo_matrix_figure: manuscript/figures/fig06_g3_frozen_ordinary_vs_lodo.svg
+  norway_risk_coverage_figure: manuscript/figures/fig07_g3_frozen_risk_tradeoff.svg
+  pooled_risk_coverage_figure: manuscript/figures/fig08_g3_frozen_pooled_risk_coverage.svg
+  error_taxonomy_summary: outputs/g3_frozen_subset_error_taxonomy_summary.md
+
+pass_criteria:
+  - ordinary and all seven LODO runs finish under identical hyperparameters
+  - per-domain metrics are written to CSV and combined Markdown summary
+  - prediction export and calibration finish without re-training
+  - manuscript and submission package explicitly state subset-scale boundary
+  - no operational referral-benefit claim is made unless supported by calibration curves
+
+downgrade_rules:
+  - if any LODO run fails, report the completed domains as an audit pilot and keep G3 open
+  - if confidence filtering improves precision only at very low coverage, frame it as a precision-coverage tradeoff
+  - if metrics remain weak, position the paper around reproducible stress testing and failure taxonomy

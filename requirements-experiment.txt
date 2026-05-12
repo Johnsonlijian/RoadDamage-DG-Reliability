@@ -1,0 +1,11 @@
+# Core experiment dependencies for the RoadDamage-DG PoC.
+# Install only inside a project/conda environment after confirming GPU/CPU strategy.
+
+numpy
+pandas
+matplotlib
+scikit-learn
+torch
+torchvision
+ultralytics
+

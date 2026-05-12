@@ -1,0 +1,2 @@
+name,status,data,model,epochs,imgsz,batch,workers,device,final_epoch,train_box_loss,train_cls_loss,train_dfl_loss,precision_B,recall_B,mAP50_B,mAP50_95_B,val_box_loss,val_cls_loss,val_dfl_loss,results_csv
+ordinary_pretrained_4epoch,existing,data_processed\yolo_g3_frozen_subset_ordinary\dataset.yaml,yolov8n.pt,4,320,8,0,cpu,4,2.38711,2.88648,1.76898,0.16639,0.15943,0.07447,0.0244,2.44918,2.90108,1.84254,runs\detect\outputs\yolo_g3_frozen_subset_ordinary\ordinary_pretrained_4epoch\results.csv

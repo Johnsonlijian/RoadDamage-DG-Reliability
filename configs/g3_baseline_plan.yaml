@@ -1,0 +1,86 @@
+# G3 paper-grade baseline plan.
+# This file defines the next evidence gate. Values may be adjusted after a timing pilot,
+# but changes must be recorded in logs/decision_log.md.
+
+gate: G3_paper_grade_baseline
+status: timing_pilot_passed
+
+principles:
+  no_smoke_metrics_as_final_results: true
+  save_prediction_outputs: true
+  ordinary_vs_lodo_required: true
+  calibration_after_predictions: true
+  no_foundation_superiority_claim_before_fixed_comparison: true
+
+dataset:
+  source_root: data_raw/RDD2022_extracted
+  task_labels:
+    - D00
+    - D10
+    - D20
+    - D40
+  ignored_labels_policy: audit_not_merge
+  domains:
+    - China_Drone
+    - China_MotorBike
+    - Czech_Republic
+    - India
+    - Japan
+    - Norway
+    - United_States
+
+baseline_ladder:
+  timing_pilot:
+    purpose: estimate CPU/GPU runtime before full runs
+    train_images_per_domain: 160
+    val_images_per_domain: 68
+    epochs: 2
+    seeds:
+      - 0
+  main_cpu_fallback:
+    purpose: justified subset-scale baseline if GPU is unavailable
+    train_images_per_domain: 400
+    val_images_per_domain: 160
+    epochs: 10
+    seeds:
+      - 0
+      - 1
+  full_scale_preferred:
+    purpose: paper-grade baseline if GPU/server time is available
+    train_images_per_domain: all_available
+    val_policy: fixed_domain_or_stratified_holdout
+    epochs: 50
+    seeds:
+      - 0
+      - 1
+      - 2
+
+required_outputs:
+  ordinary_split_metrics: outputs/g3_ordinary_baseline_summary.md
+  lodo_metrics: outputs/g3_lodo_baseline_summary.md
+  prediction_tables: data_processed/predictions/
+  calibration_tables: data_processed/calibration/
+  figures:
+    - manuscript/figures/fig04_g3_ordinary_vs_lodo_matrix.svg
+    - manuscript/figures/fig05_g3_risk_coverage_curves.svg
+
+timing_pilot_outputs:
+  ordinary_metrics: data_processed/yolo_g3_timing_ordinary_result.csv
+  lodo_metrics: data_processed/yolo_g3_timing_lodo_results.csv
+  combined_summary: outputs/g3_timing_pilot_summary.md
+  ordinary_predictions: data_processed/predictions/g3_timing_ordinary_predictions.csv
+  ordinary_calibration: outputs/g3_timing_ordinary_calibration_summary.md
+  lodo_norway_predictions: data_processed/predictions/g3_timing_lodo_heldout_Norway_predictions.csv
+  lodo_norway_calibration: outputs/g3_timing_lodo_heldout_Norway_calibration_summary.md
+
+pass_criteria:
+  - ordinary and LODO runs complete under the same model, epochs, image size, and seed policy
+  - per-domain and per-class metrics are written to CSV and Markdown
+  - prediction-level outputs include confidence, predicted class, matched ground truth, IoU, and error type
+  - calibration/referral analysis can be computed without re-running detectors
+  - manuscript claims remain bounded to the completed scale
+
+downgrade_rules:
+  - if full-scale training is unavailable, state subset-scale explicitly in title/abstract/methods
+  - if domain gap is weak, shift the central claim to reproducible benchmark plus label-boundary and failure taxonomy
+  - if calibration is uninformative, present it as a negative result and remove referral-benefit claims
