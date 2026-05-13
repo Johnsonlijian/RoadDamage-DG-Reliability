@@ -1,0 +1,115 @@
+# RoadDamage-DG G4 evidence matrix.
+# This is a reproducibility/run-planning file, not a record of completed results.
+
+suite_id: g4_minimum_evidence_layer
+created: 2026-05-13
+purpose: >
+  Convert the R08 single-run subset audit demonstration into a bounded
+  multi-seed, multi-model, calibration-aware evidence layer suitable for
+  deciding whether the EAAI route is worth pursuing.
+
+domains:
+  - China_Drone
+  - China_MotorBike
+  - Czech_Republic
+  - India
+  - Japan
+  - Norway
+  - United_States
+
+primary_classes:
+  - D00
+  - D10
+  - D20
+  - D40
+
+subset_design:
+  train_images_per_source_domain: 160
+  validation_images_per_target_domain: 80
+  ordinary_validation_images_per_domain: 80
+  split_seed_policy: fixed explicit seed per run
+  copy_mode: hardlink
+  raw_data_policy: raw RDD2022 archive and extracted images are not redistributed
+
+runs:
+  g4a_repeated_r08:
+    status: required
+    model_weights:
+      - yolov8n.pt
+    seeds:
+      - 20260512
+      - 20260513
+      - 20260514
+    epochs: 4
+    image_size: 320
+    batch: 8
+    device_default: cpu
+    expected_runs_per_seed: 8
+    claim_supported_if_stable: >
+      The audit surface is not merely a one-seed artifact under the same
+      frozen subset-scale design. This still does not support deployment or
+      detector-performance claims.
+
+  g4b_stronger_detector_bridge:
+    status: required_before_submission
+    preferred_model_weights:
+      - yolov8s.pt
+      - yolov8m.pt
+    minimum_acceptance:
+      model_count: 1
+      seed_count: 1
+      matrix: ordinary plus seven LODO runs
+    preferred_acceptance:
+      model_count: 1
+      seed_count: 3
+      matrix: ordinary plus seven LODO runs per seed
+    epochs_bridge: 8
+    image_size_bridge: 640
+    batch_bridge: 8
+    device_preferred: cuda
+    fallback_if_weights_or_gpu_unavailable: >
+      Keep g4a complete, record the missing stronger-detector bridge as a
+      submission blocker, and do not claim model-agnostic protocol value.
+
+post_processing:
+  prediction_export:
+    required_for_all_completed_runs: true
+    confidence_floor: 0.001
+    iou_match_threshold: 0.5
+  calibration:
+    bins: 10
+    pooled_ece: required
+    high_confidence_conditional_gap: required
+    domainwise_ece: required
+  image_level_workload:
+    thresholds:
+      - 0.05
+      - 0.10
+      - 0.20
+      - 0.30
+      - 0.50
+      - 0.70
+      - 0.90
+    required_metrics:
+      - image_review_coverage
+      - selected_image_tp_rate
+      - gt_positive_image_recall_proxy
+  label_boundary_sensitivity:
+    primary_action: false_positive_overlap_with_non_primary_xml_boxes
+    secondary_action_if_compute_allows: exclude_vs_merge_training_policy
+
+submission_gate:
+  pass_requires:
+    - at least g4a complete
+    - at least one stronger detector bridge complete or explicitly downgraded target journal
+    - prediction export for all manuscript-used baselines
+    - calibration and image-level workload summaries
+    - label-boundary sensitivity summary
+    - fixed public release tag or archive prepared before submission
+  forbidden_claims_until_pass:
+    - deployment readiness
+    - state of the art detector performance
+    - operational referral policy
+    - stable hard-domain conclusion from single-run evidence
+    - calibrated confidence threshold
+    - road-segment or work-order workload validation

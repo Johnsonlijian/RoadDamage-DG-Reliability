@@ -25,6 +25,13 @@ UltralyticsConfig/
 runs/
 data_processed/predictions/
 data_processed/calibration/
+!data_processed/calibration/
+!data_processed/calibration/g3_frozen_subset_lodo_all_image_level_coverage.csv
+!data_processed/calibration/g3_frozen_subset_ordinary_image_level_coverage.csv
+!data_processed/calibration/g3_frozen_subset_lodo_all_calibration_diagnostics.csv
+!data_processed/calibration/g3_frozen_subset_ordinary_calibration_diagnostics.csv
+!data_processed/calibration/g3_frozen_subset_lodo_all_label_boundary_overlap.csv
+!data_processed/calibration/g3_frozen_subset_ordinary_label_boundary_overlap.csv
 *.pt
 
 # Python cache

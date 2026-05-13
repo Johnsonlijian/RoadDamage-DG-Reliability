@@ -23,6 +23,7 @@ def main() -> int:
     parser.add_argument("--out-root", default="data_processed/yolo_lodo_smoke")
     parser.add_argument("--max-train-per-domain", type=int, default=80)
     parser.add_argument("--max-val", type=int, default=240)
+    parser.add_argument("--seed", type=int, default=20260512)
     parser.add_argument("--copy-mode", choices=["copy", "hardlink", "symlink"], default="copy")
     parser.add_argument("--overwrite", action="store_true")
     parser.add_argument("--domains", nargs="*", default=DOMAINS)
@@ -45,6 +46,8 @@ def main() -> int:
             str(args.max_train_per_domain),
             "--max-val",
             str(args.max_val),
+            "--seed",
+            str(args.seed),
             "--copy-mode",
             args.copy_mode,
         ]

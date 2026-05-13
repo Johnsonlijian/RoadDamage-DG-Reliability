@@ -138,6 +138,7 @@ def main() -> int:
     parser.add_argument("--model", default="yolov8n.pt")
     parser.add_argument("--train-per-domain", type=int, default=160)
     parser.add_argument("--val-per-domain", type=int, default=68)
+    parser.add_argument("--seed", type=int, default=20260512)
     parser.add_argument("--epochs", type=int, default=2)
     parser.add_argument("--imgsz", type=int, default=320)
     parser.add_argument("--batch", type=int, default=4)
@@ -179,6 +180,8 @@ def main() -> int:
             str(args.train_per_domain),
             "--max-val-per-domain",
             str(args.val_per_domain),
+            "--seed",
+            str(args.seed),
             "--copy-mode",
             args.copy_mode,
         ]
@@ -197,6 +200,8 @@ def main() -> int:
             str(args.train_per_domain),
             "--max-val",
             str(args.val_per_domain),
+            "--seed",
+            str(args.seed),
             "--copy-mode",
             args.copy_mode,
             "--domains",

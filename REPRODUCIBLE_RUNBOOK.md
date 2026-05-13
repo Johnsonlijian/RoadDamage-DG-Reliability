@@ -1,6 +1,6 @@
 # Reproducible Runbook
 
-Status: R08 frozen subset runbook.
+Status: R08 frozen subset plus G4 release-candidate runbook.
 
 ## Expected Local Inputs
 
@@ -17,8 +17,9 @@ Status: R08 frozen subset runbook.
 5. Build four-class YOLO subsets.
 6. Run ordinary and leave-one-domain-out baselines.
 7. Export prediction-level TP/FP/FN rows.
-8. Compute calibration, risk-coverage, and error taxonomy tables.
+8. Compute calibration, risk-coverage, image-level coverage, label-boundary overlap, and error taxonomy tables.
 9. Generate figures.
+10. Plan or run the G4 evidence layer.
 
 ## R08 Frozen Subset Commands
 
@@ -35,5 +36,33 @@ python scripts/21_plot_g3_reliability.py --ordinary-risk data_processed/calibrat
 
 python scripts/22_summarize_prediction_errors.py --predictions data_processed/predictions/g3_frozen_subset_lodo_all_predictions.csv --domain-csv data_processed/g3_frozen_subset_lodo_error_by_domain.csv --domain-class-csv data_processed/g3_frozen_subset_lodo_error_by_domain_class.csv --class-csv data_processed/g3_frozen_subset_lodo_error_by_class.csv --summary outputs/g3_frozen_subset_error_taxonomy_summary.md --title "G3 Frozen Subset Error Taxonomy Summary" --boundary "frozen subset-scale prediction export. Use for manuscript failure analysis with an explicit subset-scale boundary; do not treat as full-scale detector performance."
 ```
+
+## R08 Post-Processing Audit Commands
+
+These commands operate on already exported R08 prediction tables. They are single-run post-processing diagnostics, not G4 multi-seed evidence.
+
+```powershell
+python scripts/23_image_level_coverage.py --predictions data_processed/predictions/g3_frozen_subset_lodo_all_predictions.csv --csv data_processed/calibration/g3_frozen_subset_lodo_all_image_level_coverage.csv --summary outputs/g3_frozen_subset_lodo_all_image_level_coverage_summary.md --title "R08 Pooled Domain-Holdout Image-Level Coverage Summary"
+
+python scripts/23_image_level_coverage.py --predictions data_processed/predictions/g3_frozen_subset_ordinary_predictions.csv --csv data_processed/calibration/g3_frozen_subset_ordinary_image_level_coverage.csv --summary outputs/g3_frozen_subset_ordinary_image_level_coverage_summary.md --title "R08 Ordinary Image-Level Coverage Summary"
+
+python scripts/25_calibration_diagnostics.py --predictions data_processed/predictions/g3_frozen_subset_lodo_all_predictions.csv --group-by domain --csv data_processed/calibration/g3_frozen_subset_lodo_all_calibration_diagnostics.csv --summary outputs/g3_frozen_subset_lodo_all_calibration_diagnostics_summary.md
+
+python scripts/25_calibration_diagnostics.py --predictions data_processed/predictions/g3_frozen_subset_ordinary_predictions.csv --group-by domain --csv data_processed/calibration/g3_frozen_subset_ordinary_calibration_diagnostics.csv --summary outputs/g3_frozen_subset_ordinary_calibration_diagnostics_summary.md
+
+python scripts/26_label_boundary_overlap.py --predictions data_processed/predictions/g3_frozen_subset_lodo_all_predictions.csv --boxes data_processed/rdd2022_boxes.csv --csv data_processed/calibration/g3_frozen_subset_lodo_all_label_boundary_overlap.csv --summary outputs/g3_frozen_subset_lodo_all_label_boundary_overlap_summary.md
+
+python scripts/26_label_boundary_overlap.py --predictions data_processed/predictions/g3_frozen_subset_ordinary_predictions.csv --boxes data_processed/rdd2022_boxes.csv --csv data_processed/calibration/g3_frozen_subset_ordinary_label_boundary_overlap.csv --summary outputs/g3_frozen_subset_ordinary_label_boundary_overlap_summary.md
+```
+
+## G4 Planning Command
+
+Use dry-run first:
+
+```powershell
+python scripts/24_run_g4_evidence_layer.py --suite g4a_r08_repeat --models yolov8n.pt --seeds 20260513 20260514 --train-per-domain 160 --val-per-domain 80 --epochs 4 --imgsz 320 --batch 8 --device cpu --workers 0 --copy-mode hardlink --postprocess --dry-run
+```
+
+The actual command is the same without `--dry-run`. The G4b stronger-detector bridge requires YOLOv8s/YOLOv8m weights and a suitable CPU/GPU plan.
 
 Prediction CSVs and calibration tables can be large and are ignored by default. The repository includes small summaries and final metric/error tables.

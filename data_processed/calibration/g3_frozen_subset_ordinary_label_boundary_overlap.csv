@@ -1,0 +1,4 @@
+iou_threshold,false_positive_predictions,fp_overlapping_non_primary_xml,share_of_fp,non_primary_label_counts,domain_counts
+0.100,151091,2120,0.014031,D44:1252; Repair:518; D50:262; D01:61; D43:27,Japan:1184; India:418; China_MotorBike:291; China_Drone:227
+0.300,151091,662,0.004381,D44:409; Repair:167; D50:64; D01:18; D43:4,Japan:370; India:125; China_MotorBike:93; China_Drone:74
+0.500,151091,236,0.001562,D44:129; Repair:70; D50:28; D01:7; D43:2,Japan:124; India:42; China_MotorBike:35; China_Drone:35
