@@ -1,0 +1,2 @@
+name,status,data,model,epochs,imgsz,batch,workers,device,final_epoch,train_box_loss,train_cls_loss,train_dfl_loss,precision_B,recall_B,mAP50_B,mAP50_95_B,val_box_loss,val_cls_loss,val_dfl_loss,results_csv
+ordinary_yolov8s_seed20260513_8ep_640px,ran,data_processed\g4\g4b_bridge_yolov8s_seed20260513_ordinary\dataset.yaml,yolov8s.pt,8,640,8,0,cuda,8,2.01875,2.46024,1.84559,0.28098,0.25675,0.18136,0.06989,2.05394,2.40593,1.95514,runs\detect\outputs\g4\g4b_bridge_yolov8s_seed20260513_ordinary_train\ordinary_yolov8s_seed20260513_8ep_640px\results.csv

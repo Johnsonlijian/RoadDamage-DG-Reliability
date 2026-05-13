@@ -1,6 +1,6 @@
 # Reproducible Runbook
 
-Status: R08 frozen subset plus G4 release-candidate runbook.
+Status: R08 frozen subset plus completed G4 release-candidate runbook.
 
 ## Expected Local Inputs
 
@@ -19,7 +19,7 @@ Status: R08 frozen subset plus G4 release-candidate runbook.
 7. Export prediction-level TP/FP/FN rows.
 8. Compute calibration, risk-coverage, image-level coverage, label-boundary overlap, and error taxonomy tables.
 9. Generate figures.
-10. Plan or run the G4 evidence layer.
+10. Run the G4 evidence layer and regenerate compact summaries.
 
 ## R08 Frozen Subset Commands
 
@@ -55,14 +55,27 @@ python scripts/26_label_boundary_overlap.py --predictions data_processed/predict
 python scripts/26_label_boundary_overlap.py --predictions data_processed/predictions/g3_frozen_subset_ordinary_predictions.csv --boxes data_processed/rdd2022_boxes.csv --csv data_processed/calibration/g3_frozen_subset_ordinary_label_boundary_overlap.csv --summary outputs/g3_frozen_subset_ordinary_label_boundary_overlap_summary.md
 ```
 
-## G4 Planning Command
+## G4 Completed Evidence Commands
 
-Use dry-run first:
+G4a repeated YOLOv8n subset evidence:
 
 ```powershell
-python scripts/24_run_g4_evidence_layer.py --suite g4a_r08_repeat --models yolov8n.pt --seeds 20260513 20260514 --train-per-domain 160 --val-per-domain 80 --epochs 4 --imgsz 320 --batch 8 --device cpu --workers 0 --copy-mode hardlink --postprocess --dry-run
+python scripts/24_run_g4_evidence_layer.py --suite g4a_r08_repeat --models yolov8n.pt --seeds 20260513 20260514 --train-per-domain 160 --val-per-domain 80 --epochs 4 --imgsz 320 --batch 8 --device cuda --workers 0 --copy-mode copy --overwrite --overwrite-runs --postprocess
 ```
 
-The actual command is the same without `--dry-run`. The G4b stronger-detector bridge requires YOLOv8s/YOLOv8m weights and a suitable CPU/GPU plan.
+G4b YOLOv8s detector-capacity bridge:
 
-Prediction CSVs and calibration tables can be large and are ignored by default. The repository includes small summaries and final metric/error tables.
+```powershell
+python scripts/24_run_g4_evidence_layer.py --suite g4b_bridge --models yolov8s.pt --seeds 20260512 20260513 20260514 --train-per-domain 160 --val-per-domain 80 --epochs 8 --imgsz 640 --batch 8 --device cuda --workers 0 --copy-mode copy --overwrite --overwrite-runs --postprocess
+```
+
+G4 summary and figure regeneration:
+
+```powershell
+python scripts/27_summarize_g4a_multiseed.py
+python scripts/29_summarize_g4b_bridge.py
+python scripts/28_make_g4_figures.py
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/31_run_g4_label_boundary_batch.ps1
+```
+
+Prediction CSVs and detailed calibration/annotated overlap tables can be large and are ignored by default. The repository includes compact summaries and final metric/error tables.

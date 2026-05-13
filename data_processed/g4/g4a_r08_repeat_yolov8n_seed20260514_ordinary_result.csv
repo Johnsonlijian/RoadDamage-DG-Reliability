@@ -1,0 +1,2 @@
+name,status,data,model,epochs,imgsz,batch,workers,device,final_epoch,train_box_loss,train_cls_loss,train_dfl_loss,precision_B,recall_B,mAP50_B,mAP50_95_B,val_box_loss,val_cls_loss,val_dfl_loss,results_csv
+ordinary_yolov8n_seed20260514_4ep_320px,ran,data_processed\g4\g4a_r08_repeat_yolov8n_seed20260514_ordinary\dataset.yaml,yolov8n.pt,4,320,8,0,cuda,4,2.4742,2.93374,1.81456,0.16424,0.20228,0.08956,0.02811,2.47062,2.71928,1.85742,runs\detect\outputs\g4\g4a_r08_repeat_yolov8n_seed20260514_ordinary_train\ordinary_yolov8n_seed20260514_4ep_320px\results.csv

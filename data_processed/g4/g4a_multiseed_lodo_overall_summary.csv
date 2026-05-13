@@ -1,0 +1,2 @@
+model,epochs,imgsz,pool,n_runs,precision_B_mean,precision_B_std,precision_B_min,precision_B_max,recall_B_mean,recall_B_std,recall_B_min,recall_B_max,mAP50_B_mean,mAP50_B_std,mAP50_B_min,mAP50_B_max,mAP50_95_B_mean,mAP50_95_B_std,mAP50_95_B_min,mAP50_95_B_max
+yolov8n.pt,4,320,all_lodo_domains,21,0.18588523809523808,0.14145238473136632,0.03581,0.45545,0.10555428571428568,0.04760846653395051,0.01478,0.17237,0.06403190476190476,0.027964753819593624,0.00863,0.11768,0.021044761904761906,0.00997462461401311,0.00297,0.04262

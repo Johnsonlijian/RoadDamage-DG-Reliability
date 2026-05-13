@@ -2,7 +2,7 @@
 # This records actual completion status. Planned items must not be cited as results.
 
 created: 2026-05-13
-updated: 2026-05-13
+updated: 2026-05-14
 
 environment_snapshot:
   gpu_visible:
@@ -10,101 +10,120 @@ environment_snapshot:
     memory_total_mib: 8192
     driver_version: "560.94"
   current_python_env: .venv-rdd
-  torch_version: 2.11.0+cpu
-  torch_cuda_available: false
+  torch_version: 2.11.0+cu126
+  torch_cuda_available: true
   available_yolo_weights:
     - yolov8n.pt
-  missing_bridge_weights:
     - yolov8s.pt
-    - yolov8m.pt
 
-completed_runs:
-  - run_id: r08_yolov8n_seed20260512_ordinary
+completed_suites:
+  - suite_id: g4a_r08_repeat
     g4_component: g4a_repeated_r08_seed_baseline
-    status: completed_as_r08_single_run
+    status: completed
     model: yolov8n.pt
-    seed: 20260512
+    seeds:
+      - 20260512
+      - 20260513
+      - 20260514
+    ordinary_runs: 3
+    lodo_runs: 21
+    train_images_per_source_domain: 160
+    val_images_per_target_domain: 80
     epochs: 4
     image_size: 320
     batch: 8
-    device: cpu
-    result_csv: data_processed/yolo_g3_frozen_subset_ordinary_result.csv
-    prediction_csv: data_processed/predictions/g3_frozen_subset_ordinary_predictions.csv
-    note: Counts as the first seed-level R08 baseline only; it does not complete G4a.
+    devices_used:
+      - cpu_for_original_r08_seed20260512
+      - cuda_for_seeds20260513_20260514
+    summary: outputs/g4/g4a_multiseed_summary.md
+    main_tables:
+      - data_processed/g4/g4a_multiseed_runs.csv
+      - data_processed/g4/g4a_multiseed_ordinary_summary.csv
+      - data_processed/g4/g4a_multiseed_lodo_overall_summary.csv
+      - data_processed/g4/g4a_multiseed_lodo_by_domain_summary.csv
+      - data_processed/g4/g4a_multiseed_calibration_summary.csv
+      - data_processed/g4/g4a_multiseed_image_level_thresholds.csv
+    headline_metrics:
+      ordinary_mean_map50: 0.0831
+      ordinary_map50_std: 0.0078
+      pooled_lodo_mean_map50: 0.0640
+      pooled_lodo_map50_std: 0.0280
+      lowest_heldout_domain: Norway
+      lowest_heldout_domain_mean_map50: 0.0103
 
-  - run_id: r08_yolov8n_seed20260512_lodo_matrix
-    g4_component: g4a_repeated_r08_seed_baseline
-    status: completed_as_r08_single_run
-    model: yolov8n.pt
-    seed: 20260512
-    epochs: 4
-    image_size: 320
+  - suite_id: g4b_bridge
+    g4_component: g4b_stronger_detector_bridge
+    status: completed
+    model: yolov8s.pt
+    seeds:
+      - 20260512
+      - 20260513
+      - 20260514
+    ordinary_runs: 3
+    lodo_runs: 21
+    train_images_per_source_domain: 160
+    val_images_per_target_domain: 80
+    epochs: 8
+    image_size: 640
     batch: 8
-    device: cpu
-    result_csv: data_processed/yolo_g3_frozen_subset_lodo_results.csv
-    combined_prediction_csv: data_processed/predictions/g3_frozen_subset_lodo_all_predictions.csv
-    note: Seven held-out-domain runs complete for the first seed only.
+    device: cuda
+    summary: outputs/g4/g4b_bridge_summary.md
+    main_tables:
+      - data_processed/g4/g4b_bridge_setting_runs.csv
+      - data_processed/g4/g4b_bridge_setting_summary.csv
+      - data_processed/g4/g4b_bridge_domain_long.csv
+      - data_processed/g4/g4b_bridge_domain_comparison.csv
+      - data_processed/g4/g4b_bridge_domain_summary.csv
+      - data_processed/g4/g4b_bridge_calibration_summary.csv
+      - data_processed/g4/g4b_bridge_image_level_thresholds.csv
+    headline_metrics:
+      ordinary_mean_map50: 0.1864
+      ordinary_map50_std: 0.0087
+      pooled_lodo_mean_map50: 0.1294
+      pooled_lodo_map50_std: 0.0154
+      lowest_heldout_domain: Norway
+      lowest_heldout_domain_mean_map50: 0.0511
 
 completed_postprocessing:
-  - task_id: r08_seed20260512_image_level_coverage
-    status: completed_for_r08_single_run
-    inputs:
-      - data_processed/predictions/g3_frozen_subset_ordinary_predictions.csv
-      - data_processed/predictions/g3_frozen_subset_lodo_all_predictions.csv
-    outputs:
-      - data_processed/calibration/g3_frozen_subset_ordinary_image_level_coverage.csv
-      - data_processed/calibration/g3_frozen_subset_lodo_all_image_level_coverage.csv
-      - outputs/g3_frozen_subset_ordinary_image_level_coverage_summary.md
-      - outputs/g3_frozen_subset_lodo_all_image_level_coverage_summary.md
+  - task_id: g4_prediction_exports
+    status: completed_for_all_manuscript_used_runs
+    outputs_root: data_processed/predictions
+  - task_id: g4_calibration_diagnostics
+    status: completed_for_all_manuscript_used_ordinary_and_lodo_all_exports
+    summary_tables:
+      - data_processed/g4/g4a_multiseed_calibration_summary.csv
+      - data_processed/g4/g4b_bridge_calibration_summary.csv
+  - task_id: g4_image_level_workload_proxy
+    status: completed_for_all_manuscript_used_ordinary_and_lodo_all_exports
+    summary_tables:
+      - data_processed/g4/g4a_multiseed_image_level_thresholds.csv
+      - data_processed/g4/g4b_bridge_image_level_thresholds.csv
+  - task_id: g4_label_boundary_overlap
+    status: completed_for_r08_g4a_and_g4b_ordinary_and_lodo_all_exports
+    script: scripts/31_run_g4_label_boundary_batch.ps1
+    summary:
+      - outputs/g4/g4_label_boundary_overlap_summary.md
+      - data_processed/g4/g4_label_boundary_overlap_summary.csv
 
-  - task_id: r08_seed20260512_calibration_diagnostics
-    status: completed_for_r08_single_run
-    inputs:
-      - data_processed/predictions/g3_frozen_subset_ordinary_predictions.csv
-      - data_processed/predictions/g3_frozen_subset_lodo_all_predictions.csv
-    outputs:
-      - data_processed/calibration/g3_frozen_subset_ordinary_calibration_diagnostics.csv
-      - data_processed/calibration/g3_frozen_subset_lodo_all_calibration_diagnostics.csv
-      - outputs/g3_frozen_subset_ordinary_calibration_diagnostics_summary.md
-      - outputs/g3_frozen_subset_lodo_all_calibration_diagnostics_summary.md
-
-  - task_id: r08_seed20260512_label_boundary_overlap
-    status: completed_for_r08_single_run
-    inputs:
-      - data_processed/rdd2022_boxes.csv
-      - data_processed/predictions/g3_frozen_subset_ordinary_predictions.csv
-      - data_processed/predictions/g3_frozen_subset_lodo_all_predictions.csv
-    outputs:
-      - data_processed/calibration/g3_frozen_subset_ordinary_label_boundary_overlap.csv
-      - data_processed/calibration/g3_frozen_subset_lodo_all_label_boundary_overlap.csv
-      - outputs/g3_frozen_subset_ordinary_label_boundary_overlap_summary.md
-      - outputs/g3_frozen_subset_lodo_all_label_boundary_overlap_summary.md
-
-pending_runs:
-  - run_id: g4a_yolov8n_seed20260513_ordinary_plus_lodo
-    status: pending_compute
-    dry_run_status: planned_commands_generated_2026-05-13
-    model: yolov8n.pt
-    seed: 20260513
-    expected_runs: 8
-  - run_id: g4a_yolov8n_seed20260514_ordinary_plus_lodo
-    status: pending_compute
-    dry_run_status: planned_commands_generated_2026-05-13
-    model: yolov8n.pt
-    seed: 20260514
-    expected_runs: 8
-  - run_id: g4b_stronger_detector_bridge
-    status: blocked_by_missing_weights_and_cuda_env
-    preferred_models:
-      - yolov8s.pt
-      - yolov8m.pt
-    expected_minimum_runs: 8
+generated_figures:
+  - manuscript/figures/fig09_g4a_multiseed_lodo_map50.svg
+  - manuscript/figures/fig10_g4a_image_level_thresholds.svg
+  - manuscript/figures/fig11_g4b_yolov8n_vs_yolov8s_bridge.svg
 
 submission_readiness:
-  g4a_repeated_r08: incomplete
-  g4b_stronger_detector_bridge: incomplete
-  g4c_calibration: completed_for_r08_only
-  g4d_image_level_workload: completed_for_r08_only
-  g4e_label_boundary_overlap: completed_for_r08_only
-  g4f_artifact_release: local_candidate_pending
-  overall: protocol_ready_not_submission_ready
+  g4a_repeated_r08: completed
+  g4b_stronger_detector_bridge: completed_for_yolov8s_bounded_bridge
+  g4c_calibration: completed
+  g4d_image_level_workload: completed_as_image_level_proxy
+  g4e_label_boundary_overlap: completed_as_postprocessing_overlap
+  g4f_artifact_release: local_candidate_pending_public_approval
+  overall: g4_evidence_complete_for_bounded_protocol_manuscript_not_deployment_ready
+
+forbidden_claims_after_g4:
+  - deployment readiness
+  - state of the art detector performance
+  - full scale RDD2022 benchmark performance
+  - operational referral policy
+  - calibrated confidence threshold for agency use
+  - road segment or work order workload validation
+  - proof that label merging would solve false positives

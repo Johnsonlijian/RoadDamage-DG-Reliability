@@ -2,7 +2,7 @@
 
 Clean public reproducibility package for the RoadDamage-DG paper project.
 
-Status: R12/G4 release-candidate package, 2026-05-13. This repository contains code, configs, small derived summaries, metric tables, and script-generated SVG figures for the subset-scale reliability-audit route. It is a local release candidate only until the author approves public push/release.
+Status: R13/G4 completed local release-candidate package, 2026-05-14. This repository contains code, configs, small derived summaries, metric tables, and script-generated SVG figures for the subset-scale reliability-audit route. It is a local release candidate only until the author approves public push/release.
 
 ## Scope
 
@@ -14,11 +14,17 @@ This repository is intended to reproduce:
 - domain-holdout subset construction;
 - YOLO frozen subset baselines;
 - prediction export, calibration, risk-coverage, image-level coverage, label-boundary overlap, and failure-taxonomy tables;
-- the G4 evidence matrix and run manifest.
+- the completed G4 evidence matrix, run manifest, summaries, and figures.
 
-## Current Frozen Baseline
+## Current G4 Evidence Layer
 
-The included R08 baseline uses YOLOv8n pretrained weights with:
+The included G4 evidence layer is bounded subset evidence. It does not reproduce raw RDD2022 data, downloaded archives, extracted images, or full prediction exports. It contains compact derived summaries for:
+
+- G4a: repeated YOLOv8n 320 px / 4 epoch subset evidence across seeds 20260512, 20260513, and 20260514;
+- G4b: YOLOv8s 640 px / 8 epoch detector-capacity bridge across the same three seeds;
+- calibration diagnostics, image-level workload proxies, and label-boundary false-positive overlap summaries for manuscript-used ordinary and pooled LODO exports.
+
+The original R08 baseline uses YOLOv8n pretrained weights with:
 
 - 160 training images per training domain;
 - 80 validation images per target domain;
@@ -27,7 +33,27 @@ The included R08 baseline uses YOLOv8n pretrained weights with:
 - batch size 8;
 - seven domain-holdout runs plus an ordinary mixed-domain reference.
 
-Key derived files:
+Key G4 derived files:
+
+- `outputs/g4/g4a_multiseed_summary.md`
+- `outputs/g4/g4b_bridge_summary.md`
+- `outputs/g4/g4_label_boundary_overlap_summary.md`
+- `data_processed/g4/g4a_multiseed_runs.csv`
+- `data_processed/g4/g4a_multiseed_ordinary_summary.csv`
+- `data_processed/g4/g4a_multiseed_lodo_overall_summary.csv`
+- `data_processed/g4/g4a_multiseed_lodo_by_domain_summary.csv`
+- `data_processed/g4/g4b_bridge_setting_summary.csv`
+- `data_processed/g4/g4b_bridge_domain_summary.csv`
+- `data_processed/g4/g4b_bridge_calibration_summary.csv`
+- `data_processed/g4/g4b_bridge_image_level_thresholds.csv`
+- `data_processed/g4/g4_label_boundary_overlap_summary.csv`
+- `figures/fig09_g4a_multiseed_lodo_map50.svg`
+- `figures/fig10_g4a_image_level_thresholds.svg`
+- `figures/fig11_g4b_yolov8n_vs_yolov8s_bridge.svg`
+- `configs/g4_run_manifest.yaml`
+- `gates/G4_Execution_Report_2026-05-14.md`
+
+Key R08 derived files retained for traceability:
 
 - `outputs/g3_frozen_subset_baseline_summary.md`
 - `data_processed/yolo_g3_frozen_subset_ordinary_result.csv`
@@ -38,7 +64,6 @@ Key derived files:
 - `outputs/g3_frozen_subset_lodo_all_calibration_diagnostics_summary.md`
 - `outputs/g3_frozen_subset_lodo_all_label_boundary_overlap_summary.md`
 - `configs/g4_evidence_matrix.yaml`
-- `configs/g4_run_manifest.yaml`
 - `gates/G4_Evidence_Plan.md`
 - `gates/G4_Compute_Feasibility_Memo.md`
 - `figures/fig06_g3_frozen_ordinary_vs_lodo.svg`

@@ -1,0 +1,2 @@
+model,epochs,imgsz,n_runs,precision_B_mean,precision_B_std,precision_B_min,precision_B_max,recall_B_mean,recall_B_std,recall_B_min,recall_B_max,mAP50_B_mean,mAP50_B_std,mAP50_B_min,mAP50_B_max,mAP50_95_B_mean,mAP50_95_B_std,mAP50_95_B_min,mAP50_95_B_max
+yolov8n.pt,4,320,3,0.1823866666666667,0.029588528745669886,0.16424,0.21653,0.16866,0.03008628757424218,0.14427,0.20228,0.08314,0.007792554138406742,0.07447,0.08956,0.02741333333333333,0.002732440911224491,0.0244,0.02973
