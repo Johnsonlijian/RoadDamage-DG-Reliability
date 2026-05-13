@@ -30,6 +30,8 @@ This is 16 additional YOLOv8n subset runs at 4 epochs, 320 px, batch 8, CPU, fol
 
 ## Dry-Run Command
 
+Status after R12 Iteration 4: passed on 2026-05-13. The dry run generated `outputs/g4/g4_evidence_layer_run_manifest.md` and confirmed the planned commands for seeds `20260513` and `20260514`. It did not start training and does not count as evidence.
+
 ```powershell
 python scripts\24_run_g4_evidence_layer.py `
   --suite g4a_r08_repeat `

@@ -83,11 +83,13 @@ completed_postprocessing:
 pending_runs:
   - run_id: g4a_yolov8n_seed20260513_ordinary_plus_lodo
     status: pending_compute
+    dry_run_status: planned_commands_generated_2026-05-13
     model: yolov8n.pt
     seed: 20260513
     expected_runs: 8
   - run_id: g4a_yolov8n_seed20260514_ordinary_plus_lodo
     status: pending_compute
+    dry_run_status: planned_commands_generated_2026-05-13
     model: yolov8n.pt
     seed: 20260514
     expected_runs: 8
