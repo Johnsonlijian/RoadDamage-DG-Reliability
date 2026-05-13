@@ -2,7 +2,7 @@
 
 Clean public reproducibility package for the RoadDamage-DG paper project.
 
-Status: R08 frozen subset package, 2026-05-12. This repository contains code, configs, small derived summaries, metric tables, and SVG figures for the subset-scale reliability-audit route.
+Status: R11 protocol-route package, 2026-05-13. This repository contains code, configs, small derived summaries, metric tables, and SVG figures for the subset-scale reliability-audit route.
 
 ## Scope
 
@@ -11,7 +11,7 @@ This repository is intended to reproduce:
 - RDD2022 source metadata checks;
 - archive and nested-ZIP validation;
 - domain and label-boundary inventories;
-- leave-one-domain-out subset construction;
+- domain-holdout subset construction;
 - YOLO frozen subset baselines;
 - prediction export, calibration, risk-coverage, and failure-taxonomy tables.
 
@@ -24,7 +24,7 @@ The included R08 baseline uses YOLOv8n pretrained weights with:
 - 4 CPU epochs;
 - image size 320;
 - batch size 8;
-- seven leave-one-domain-out domains plus an ordinary mixed-domain reference.
+- seven domain-holdout runs plus an ordinary mixed-domain reference.
 
 Key derived files:
 
@@ -33,6 +33,7 @@ Key derived files:
 - `data_processed/yolo_g3_frozen_subset_lodo_results.csv`
 - `outputs/g3_frozen_subset_prediction_calibration_batch_summary.md`
 - `outputs/g3_frozen_subset_error_taxonomy_summary.md`
+- `figures/fig01_roaddamagedg_audit_protocol.svg`
 - `figures/fig06_g3_frozen_ordinary_vs_lodo.svg`
 - `figures/fig07_g3_frozen_risk_tradeoff.svg`
 - `figures/fig08_g3_frozen_pooled_risk_coverage.svg`
