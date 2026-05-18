@@ -1,6 +1,6 @@
 # Reproducible Runbook
 
-Status: R08 frozen subset, completed G4 release-candidate runbook, and v16 manuscript-facing derived-table/figure export.
+Status: R08 frozen subset, completed G4 release-candidate runbook, v17 manuscript-facing derived-table/figure export, and Faster R-CNN detector-family check.
 
 ## Expected Local Inputs
 
@@ -21,6 +21,7 @@ Status: R08 frozen subset, completed G4 release-candidate runbook, and v16 manus
 9. Generate figures.
 10. Run the G4 evidence layer and regenerate compact summaries.
 11. Export non-sensitive manuscript-facing source tables and generated figures for submission traceability.
+12. Run the bounded Faster R-CNN detector-family check on the same frozen ordinary and LODO subsets.
 
 ## R08 Frozen Subset Commands
 
@@ -81,11 +82,21 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/31_run_g4_label_
 
 Prediction CSVs and detailed calibration/annotated overlap tables can be large and are ignored by default. The repository includes compact summaries and final metric/error tables.
 
-## V16 Manuscript-Facing Derived Outputs
+## V17 Non-YOLO Detector-Family Check
 
-The following directories provide the public, non-sensitive traceability layer for the v16 manuscript text:
+The v17 manuscript includes a bounded non-YOLO check using torchvision Faster R-CNN MobileNetV3-320-FPN. It is a one-epoch family-diversity probe, not a tuned detector-performance baseline.
 
-- `data_processed/paper_tables/`: derived CSV tables used for manuscript numbers, including domain inventories, ordinary-vs-LODO summaries, budget-sweep summaries, domain/class diagnostics, and threshold-frontier tables.
+```powershell
+python scripts/55_run_fasterrcnn_probe.py --settings ordinary heldout_China_Drone heldout_China_MotorBike heldout_Czech_Republic heldout_India heldout_Japan heldout_Norway heldout_United_States --epochs 1 --batch-size 2 --csv data_processed/non_yolo/fasterrcnn_all_lodo_results.csv --summary outputs/non_yolo/fasterrcnn_all_lodo_summary.md
+```
+
+The resulting compact table is `data_processed/non_yolo/fasterrcnn_all_lodo_results.csv`. The summary is `outputs/non_yolo/fasterrcnn_all_lodo_summary.md`.
+
+## V17 Manuscript-Facing Derived Outputs
+
+The following directories provide the public, non-sensitive traceability layer for the v17 manuscript text:
+
+- `data_processed/paper_tables/`: derived CSV tables used for manuscript numbers, including domain inventories, ordinary-vs-LODO summaries, budget-sweep summaries, domain/class diagnostics, Faster R-CNN detector-family results, and threshold-frontier tables.
 - `figures/paper_figures/`: generated PNG/SVG manuscript figures.
 
 These files do not include raw RDD2022 images, raw archives, full prediction exports, active manuscript drafts, cover letters, reviewer-response drafts, or internal `rounds/` and `logs/` material.
