@@ -1,6 +1,6 @@
 # Reproducible Runbook
 
-Status: R08 frozen subset, completed G4 release-candidate runbook, and v15 manuscript-facing derived-table/figure export.
+Status: R08 frozen subset, completed G4 release-candidate runbook, and v16 manuscript-facing derived-table/figure export.
 
 ## Expected Local Inputs
 
@@ -81,9 +81,9 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/31_run_g4_label_
 
 Prediction CSVs and detailed calibration/annotated overlap tables can be large and are ignored by default. The repository includes compact summaries and final metric/error tables.
 
-## V15 Manuscript-Facing Derived Outputs
+## V16 Manuscript-Facing Derived Outputs
 
-The following directories provide the public, non-sensitive traceability layer for the v15 manuscript text:
+The following directories provide the public, non-sensitive traceability layer for the v16 manuscript text:
 
 - `data_processed/paper_tables/`: derived CSV tables used for manuscript numbers, including domain inventories, ordinary-vs-LODO summaries, budget-sweep summaries, domain/class diagnostics, and threshold-frontier tables.
 - `figures/paper_figures/`: generated PNG/SVG manuscript figures.

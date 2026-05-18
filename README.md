@@ -4,7 +4,7 @@ Clean public reproducibility package for the RoadDamage-DG paper project:
 
 **Domain-Aware Reliability Boundaries for Infrastructure Image-Based Road-Damage Detection**
 
-Status: v15 public release candidate, 2026-05-18. This repository contains code, configs, compact derived summaries, manuscript-facing derived tables, and script-generated figures for the bounded reliability-audit route. Raw RDD2022 archives, extracted images, active manuscript drafts, cover letters, reviewer-response drafts, internal rounds, and logs are not redistributed here.
+Status: v16 public release candidate, 2026-05-18. This repository contains code, configs, compact derived summaries, manuscript-facing derived tables, and script-generated figures for the bounded reliability-audit route. Raw RDD2022 archives, extracted images, active manuscript drafts, cover letters, reviewer-response drafts, internal rounds, and logs are not redistributed here.
 
 ## Scope
 
@@ -58,9 +58,9 @@ Key G4 derived files:
 
 ## Manuscript-Facing Derived Outputs
 
-The `data_processed/paper_tables/` directory contains non-sensitive derived CSV tables used to audit the v15 manuscript numbers. These files are copied from the submission package's source-table export and include domain diagnostics, ordinary-vs-LODO summaries, budget-sweep summaries, per-class/domain error audits, and threshold-frontier tables.
+The `data_processed/paper_tables/` directory contains non-sensitive derived CSV tables used to audit the v16 manuscript numbers. These files are copied from the submission package's source-table export and include domain diagnostics, ordinary-vs-LODO summaries, budget-sweep summaries, per-class/domain error audits, and threshold-frontier tables.
 
-The `figures/paper_figures/` directory contains generated PNG/SVG versions of the v15 manuscript figures. These are figure outputs only; no raw images from RDD2022 are redistributed.
+The `figures/paper_figures/` directory contains generated PNG/SVG versions of the v16 manuscript figures. These are figure outputs only; no raw images from RDD2022 are redistributed.
 
 Key R08 derived files retained for traceability:
 
