@@ -1,0 +1,5 @@
+class,TP,FP,FN,precision,recall,support_gt,predictions,weak_domain_cells
+D00,388,77524,313,0.00498,0.553495,701,77912,Norway recall 0.2161 (n=236); Czech_Republic recall 0.5775 (n=71); China_MotorBike recall 0.6667 (n=123)
+D10,114,21756,154,0.005213,0.425373,268,21870,Norway recall 0.0784 (n=51); Czech_Republic recall 0.3448 (n=29); United_States recall 0.3889 (n=54)
+D20,121,32423,91,0.003718,0.570755,212,32544,Norway recall 0.1364 (n=22); China_Drone recall 0.3684 (n=19); India recall 0.5625 (n=48)
+D40,26,9329,119,0.002779,0.17931,145,9355,Norway recall 0.0000 (n=16); China_MotorBike recall 0.0000 (n=9); India recall 0.0824 (n=85)

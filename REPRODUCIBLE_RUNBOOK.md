@@ -1,6 +1,6 @@
 # Reproducible Runbook
 
-Status: R08 frozen subset plus completed G4 release-candidate runbook.
+Status: R08 frozen subset, completed G4 release-candidate runbook, and v15 manuscript-facing derived-table/figure export.
 
 ## Expected Local Inputs
 
@@ -20,6 +20,7 @@ Status: R08 frozen subset plus completed G4 release-candidate runbook.
 8. Compute calibration, risk-coverage, image-level coverage, label-boundary overlap, and error taxonomy tables.
 9. Generate figures.
 10. Run the G4 evidence layer and regenerate compact summaries.
+11. Export non-sensitive manuscript-facing source tables and generated figures for submission traceability.
 
 ## R08 Frozen Subset Commands
 
@@ -79,3 +80,12 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/31_run_g4_label_
 ```
 
 Prediction CSVs and detailed calibration/annotated overlap tables can be large and are ignored by default. The repository includes compact summaries and final metric/error tables.
+
+## V15 Manuscript-Facing Derived Outputs
+
+The following directories provide the public, non-sensitive traceability layer for the v15 manuscript text:
+
+- `data_processed/paper_tables/`: derived CSV tables used for manuscript numbers, including domain inventories, ordinary-vs-LODO summaries, budget-sweep summaries, domain/class diagnostics, and threshold-frontier tables.
+- `figures/paper_figures/`: generated PNG/SVG manuscript figures.
+
+These files do not include raw RDD2022 images, raw archives, full prediction exports, active manuscript drafts, cover letters, reviewer-response drafts, or internal `rounds/` and `logs/` material.

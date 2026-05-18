@@ -4,7 +4,7 @@ Generated: 2026-05-12 16:11, local time
 
 ## Configuration
 
-- Prediction table: `R:\NAS_DRIVE\IMUT\1-Research_Output\1-Papers\1-In_Preparation\2026-TRC-RoadDamage-DomainGeneralization\data_processed\predictions\g3_frozen_subset_lodo_all_predictions.csv`
+- Prediction table: `<local_project_root>\data_processed\predictions\g3_frozen_subset_lodo_all_predictions.csv`
 - Bins: `10`
 - Prediction rows: `141681`
 - Ground-truth objects counted through TP+FN rows: `1326`

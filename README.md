@@ -1,8 +1,10 @@
-# RoadDamage-DG Reliability Benchmark
+# RoadDamage-DG Reliability Package
 
-Clean public reproducibility package for the RoadDamage-DG paper project.
+Clean public reproducibility package for the RoadDamage-DG paper project:
 
-Status: R13/G4 completed local release-candidate package, 2026-05-14. This repository contains code, configs, small derived summaries, metric tables, and script-generated SVG figures for the subset-scale reliability-audit route. It is a local release candidate only until the author approves public push/release.
+**Domain-Aware Reliability Boundaries for Infrastructure Image-Based Road-Damage Detection**
+
+Status: v15 public release candidate, 2026-05-18. This repository contains code, configs, compact derived summaries, manuscript-facing derived tables, and script-generated figures for the bounded reliability-audit route. Raw RDD2022 archives, extracted images, active manuscript drafts, cover letters, reviewer-response drafts, internal rounds, and logs are not redistributed here.
 
 ## Scope
 
@@ -14,7 +16,8 @@ This repository is intended to reproduce:
 - domain-holdout subset construction;
 - YOLO frozen subset baselines;
 - prediction export, calibration, risk-coverage, image-level coverage, label-boundary overlap, and failure-taxonomy tables;
-- the completed G4 evidence matrix, run manifest, summaries, and figures.
+- the completed G4 evidence matrix, run manifest, summaries, and figures;
+- the v15 manuscript-facing derived tables and generated figures.
 
 ## Current G4 Evidence Layer
 
@@ -53,6 +56,12 @@ Key G4 derived files:
 - `configs/g4_run_manifest.yaml`
 - `gates/G4_Execution_Report_2026-05-14.md`
 
+## Manuscript-Facing Derived Outputs
+
+The `data_processed/paper_tables/` directory contains non-sensitive derived CSV tables used to audit the v15 manuscript numbers. These files are copied from the submission package's source-table export and include domain diagnostics, ordinary-vs-LODO summaries, budget-sweep summaries, per-class/domain error audits, and threshold-frontier tables.
+
+The `figures/paper_figures/` directory contains generated PNG/SVG versions of the v15 manuscript figures. These are figure outputs only; no raw images from RDD2022 are redistributed.
+
 Key R08 derived files retained for traceability:
 
 - `outputs/g3_frozen_subset_baseline_summary.md`
@@ -85,5 +94,3 @@ This repository must not contain:
 ## Intended Remote
 
 `https://github.com/Johnsonlijian/RoadDamage-DG-Reliability`
-
-Repository creation and push remain blocked until the user creates the GitHub repository or authorizes push from the local environment.

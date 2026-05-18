@@ -4,8 +4,8 @@ Generated: 2026-05-14 00:32, local time
 
 ## Configuration
 
-- Prediction table: `R:\NAS_DRIVE\IMUT\1-Research_Output\1-Papers\1-In_Preparation\2026-TRC-RoadDamage-DomainGeneralization\data_processed\predictions\g4b_bridge_yolov8s_seed20260514_lodo_all_predictions.csv`
-- XML box table: `R:\NAS_DRIVE\IMUT\1-Research_Output\1-Papers\1-In_Preparation\2026-TRC-RoadDamage-DomainGeneralization\data_processed\rdd2022_boxes.csv`
+- Prediction table: `<local_project_root>\data_processed\predictions\g4b_bridge_yolov8s_seed20260514_lodo_all_predictions.csv`
+- XML box table: `<local_project_root>\data_processed\rdd2022_boxes.csv`
 - Primary labels excluded from boundary boxes: `D00, D10, D20, D40`
 
 ## False-Positive Overlap With Non-Primary XML Boxes

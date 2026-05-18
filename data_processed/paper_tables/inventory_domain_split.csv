@@ -1,0 +1,14 @@
+domain,split,n
+China_Drone,train,2401
+China_MotorBike,test,500
+China_MotorBike,train,1977
+Czech_Republic,test,709
+Czech_Republic,train,2829
+India,test,1959
+India,train,7706
+Japan,test,2627
+Japan,train,10506
+Norway,test,2040
+Norway,train,8161
+United_States,test,1200
+United_States,train,4805

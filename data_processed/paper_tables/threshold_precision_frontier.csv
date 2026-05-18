@@ -1,0 +1,9 @@
+setting,precision_floor,threshold,precision,prediction_coverage,accepted_predictions,gt_recall_after_acceptance,status
+ordinary,0.05,0.025,0.073349,0.043347,6585,0.343528,reached
+ordinary,0.1,0.05,0.12726,0.018208,2766,0.250356,reached
+ordinary,0.2,0.2,0.3075,0.002633,400,0.087482,reached
+ordinary,0.3,0.2,0.3075,0.002633,400,0.087482,reached
+pooled_LODO,0.05,0.05,0.062246,0.020864,2956,0.138763,reached
+pooled_LODO,0.1,,,0.0,0,0.0,not reached
+pooled_LODO,0.2,,,0.0,0,0.0,not reached
+pooled_LODO,0.3,,,0.0,0,0.0,not reached
