@@ -1,0 +1,7 @@
+boundary,minimum report item,engineering use
+Domain,Country/capture platform split; validation must identify held-out domains,Prevents mixed-domain scores from being read as new-region evidence
+Label,"Supervised labels, extra labels, and any merge policy",Keeps damage definitions comparable across studies
+Budget,"Source-domain images/boxes, epochs, image size, and seeds",Separates data scaling from cross-domain reliability
+Class,Per-class AP or TP/FP/FN diagnostics with support,Identifies which distress categories cannot support decisions
+Detector family,At least one family-diversity check or a declared architecture limit,Reduces architecture-specific overinterpretation
+Confidence frontier,"Precision-coverage table, calibration diagnostic, and threshold grid",Shows whether confidence scores can support review queues

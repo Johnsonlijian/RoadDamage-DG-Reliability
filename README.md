@@ -4,7 +4,7 @@ Clean public reproducibility package for the RoadDamage-DG paper project:
 
 **Domain-Aware Reliability Boundaries for Infrastructure Image-Based Road-Damage Detection**
 
-Status: v17 public release candidate, 2026-05-18. This repository contains code, configs, compact derived summaries, manuscript-facing derived tables, script-generated figures, and a bounded Faster R-CNN detector-family check for the reliability-audit route. Raw RDD2022 archives, extracted images, active manuscript drafts, cover letters, reviewer-response drafts, internal rounds, and logs are not redistributed here.
+Status: v19 public release candidate, 2026-05-20. This repository contains code, configs, compact derived summaries, manuscript-facing derived tables, script-generated figures, a bounded Faster R-CNN detector-family check, and v19 calibration/domain-descriptor audit outputs for the reliability-audit route. Raw RDD2022 archives, extracted images, active manuscript drafts, cover letters, reviewer-response drafts, internal rounds, and logs are not redistributed here.
 
 ## Scope
 
@@ -18,7 +18,7 @@ This repository is intended to reproduce:
 - a one-epoch torchvision Faster R-CNN MobileNetV3-320-FPN ordinary-plus-seven-LODO detector-family check;
 - prediction export, calibration, risk-coverage, image-level coverage, label-boundary overlap, and failure-taxonomy tables;
 - the completed G4 evidence matrix, run manifest, summaries, and figures;
-- the v17 manuscript-facing derived tables and generated figures.
+- the v19 manuscript-facing derived tables and generated figures.
 
 ## Current G4 Evidence Layer
 
@@ -59,9 +59,9 @@ Key G4 derived files:
 
 ## Manuscript-Facing Derived Outputs
 
-The `data_processed/paper_tables/` directory contains non-sensitive derived CSV tables used to audit the v17 manuscript numbers. These files are copied from the submission package's source-table export and include domain diagnostics, ordinary-vs-LODO summaries, budget-sweep summaries, per-class/domain error audits, non-YOLO Faster R-CNN results, and threshold-frontier tables.
+The `data_processed/paper_tables/` directory contains non-sensitive derived CSV tables used to audit the v19 manuscript numbers. These files are copied from the submission package's source-table export and include domain diagnostics, ordinary-vs-LODO summaries, budget-sweep summaries, per-class/domain error audits, non-YOLO Faster R-CNN results, threshold-frontier tables, calibration diagnostics, deterministic domain image descriptors, domain-descriptor screening correlations, and the six-boundary reporting-standard table.
 
-The `figures/paper_figures/` directory contains generated PNG/SVG versions of the v17 manuscript figures. These are figure outputs only; no raw images from RDD2022 are redistributed.
+The `figures/paper_figures/` directory contains generated PNG/SVG versions of the v19 manuscript figures. These are figure outputs only; no raw images from RDD2022 are redistributed.
 
 Key non-YOLO detector-family check files:
 
@@ -70,6 +70,16 @@ Key non-YOLO detector-family check files:
 - `outputs/non_yolo/fasterrcnn_all_lodo_summary.md`
 - `figures/paper_figures/fig11_fasterrcnn_non_yolo_probe.png`
 - `figures/paper_figures/fig11_fasterrcnn_non_yolo_probe.svg`
+
+Key v19 reliability-guidance additions:
+
+- `data_processed/paper_tables/v19_canonical_calibration_summary.csv`
+- `data_processed/paper_tables/v19_domain_image_descriptors.csv`
+- `data_processed/paper_tables/v19_domain_descriptor_table.csv`
+- `data_processed/paper_tables/v19_domain_descriptor_correlations.csv`
+- `data_processed/paper_tables/v19_six_boundary_reporting_standard.csv`
+- `figures/paper_figures/fig12_calibration_descriptor_audit.png`
+- `figures/paper_figures/fig12_calibration_descriptor_audit.svg`
 
 Key R08 derived files retained for traceability:
 

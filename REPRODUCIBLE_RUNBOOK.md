@@ -22,6 +22,7 @@ Status: R08 frozen subset, completed G4 release-candidate runbook, v17 manuscrip
 10. Run the G4 evidence layer and regenerate compact summaries.
 11. Export non-sensitive manuscript-facing source tables and generated figures for submission traceability.
 12. Run the bounded Faster R-CNN detector-family check on the same frozen ordinary and LODO subsets.
+13. Export v19 calibration, domain-descriptor, and six-boundary reporting-standard derived tables.
 
 ## R08 Frozen Subset Commands
 
@@ -92,11 +93,21 @@ python scripts/55_run_fasterrcnn_probe.py --settings ordinary heldout_China_Dron
 
 The resulting compact table is `data_processed/non_yolo/fasterrcnn_all_lodo_results.csv`. The summary is `outputs/non_yolo/fasterrcnn_all_lodo_summary.md`.
 
-## V17 Manuscript-Facing Derived Outputs
+## V19 Manuscript-Facing Derived Outputs
 
-The following directories provide the public, non-sensitive traceability layer for the v17 manuscript text:
+The following directories provide the public, non-sensitive traceability layer for the v19 manuscript text:
 
-- `data_processed/paper_tables/`: derived CSV tables used for manuscript numbers, including domain inventories, ordinary-vs-LODO summaries, budget-sweep summaries, domain/class diagnostics, Faster R-CNN detector-family results, and threshold-frontier tables.
-- `figures/paper_figures/`: generated PNG/SVG manuscript figures.
+- `data_processed/paper_tables/`: derived CSV tables used for manuscript numbers, including domain inventories, ordinary-vs-LODO summaries, budget-sweep summaries, domain/class diagnostics, Faster R-CNN detector-family results, threshold-frontier tables, canonical calibration diagnostics, sampled domain image descriptors, domain-descriptor screening correlations, and the six-boundary reporting-standard table.
+- `figures/paper_figures/`: generated PNG/SVG manuscript figures, including `fig12_calibration_descriptor_audit`.
+
+Key v19 additions:
+
+- `data_processed/paper_tables/v19_canonical_calibration_summary.csv`
+- `data_processed/paper_tables/v19_domain_image_descriptors.csv`
+- `data_processed/paper_tables/v19_domain_descriptor_table.csv`
+- `data_processed/paper_tables/v19_domain_descriptor_correlations.csv`
+- `data_processed/paper_tables/v19_six_boundary_reporting_standard.csv`
+- `figures/paper_figures/fig12_calibration_descriptor_audit.png`
+- `figures/paper_figures/fig12_calibration_descriptor_audit.svg`
 
 These files do not include raw RDD2022 images, raw archives, full prediction exports, active manuscript drafts, cover letters, reviewer-response drafts, or internal `rounds/` and `logs/` material.
