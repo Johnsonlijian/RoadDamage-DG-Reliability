@@ -1,6 +1,6 @@
 # Reproducible Runbook
 
-Status: R08 frozen subset, completed G4 release-candidate runbook, v17 manuscript-facing derived-table/figure export, and Faster R-CNN detector-family check.
+Status: R08 frozen subset, completed G4 release-candidate runbook, manuscript-facing derived-table/figure export, Faster R-CNN detector-family validation, and RetinaNet minimal architecture validation.
 
 ## Expected Local Inputs
 
@@ -21,8 +21,9 @@ Status: R08 frozen subset, completed G4 release-candidate runbook, v17 manuscrip
 9. Generate figures.
 10. Run the G4 evidence layer and regenerate compact summaries.
 11. Export non-sensitive manuscript-facing source tables and generated figures for submission traceability.
-12. Run the bounded Faster R-CNN detector-family check on the same frozen ordinary and LODO subsets.
-13. Export v19 calibration, domain-descriptor, and six-boundary reporting-standard derived tables.
+12. Run the bounded one-epoch Faster R-CNN detector-family probe on the same frozen ordinary and LODO subsets.
+13. Run the R33 640-subset non-YOLO validation layer: eight-epoch Faster R-CNN and four-epoch RetinaNet.
+14. Export v19/v20 calibration, domain-descriptor, six-boundary reporting-standard, and non-YOLO detector-family derived tables.
 
 ## R08 Frozen Subset Commands
 
@@ -92,6 +93,35 @@ python scripts/55_run_fasterrcnn_probe.py --settings ordinary heldout_China_Dron
 ```
 
 The resulting compact table is `data_processed/non_yolo/fasterrcnn_all_lodo_results.csv`. The summary is `outputs/non_yolo/fasterrcnn_all_lodo_summary.md`.
+
+## R33 Non-YOLO 640-Subset Validation Layer
+
+The v20 evidence layer replaces the earlier one-epoch Faster R-CNN probe in the manuscript narrative with a completed eight-epoch Faster R-CNN MobileNetV3-320-FPN ordinary-plus-seven-LODO validation on the frozen 640-image/source-domain subsets. It also adds a four-epoch RetinaNet ResNet50-FPN minimal architecture check. These are detector-family reliability checks, not tuned detector leaderboards.
+
+Faster R-CNN 8-epoch run:
+
+```powershell
+python scripts/59_run_r33_non_yolo_full.py --models fasterrcnn_mobilenet320 --settings ordinary heldout_China_Drone heldout_China_MotorBike heldout_Czech_Republic heldout_India heldout_Japan heldout_Norway heldout_United_States --epochs 8 --batch-size 2 --lr 0.0025 --csv data_processed/non_yolo/r33_fasterrcnn_8ep_640_lodo_results.csv --summary outputs/non_yolo/r33_fasterrcnn_8ep_640_lodo_summary.md --skip-existing
+```
+
+RetinaNet 4-epoch minimal architecture check:
+
+```powershell
+python scripts/59_run_r33_non_yolo_full.py --models retinanet_resnet50_fpn --settings ordinary heldout_China_Drone heldout_China_MotorBike heldout_Czech_Republic heldout_India heldout_Japan heldout_Norway heldout_United_States --epochs 4 --retinanet-epochs 4 --retinanet-batch-size 1 --retinanet-lr 0.001 --csv data_processed/non_yolo/r33_retinanet_4ep_640_lodo_results.csv --summary outputs/non_yolo/r33_retinanet_4ep_640_lodo_summary.md --skip-existing
+```
+
+R33 key derived outputs:
+
+- `data_processed/non_yolo/r33_fasterrcnn_8ep_640_lodo_results.csv`
+- `data_processed/non_yolo/r33_retinanet_4ep_640_lodo_results.csv`
+- `data_processed/non_yolo/r33_non_yolo_640_combined_results.csv`
+- `data_processed/non_yolo/r33_non_yolo_640_model_summary.csv`
+- `data_processed/non_yolo/r33_non_yolo_640_domain_summary.csv`
+- `outputs/non_yolo/r33_non_yolo_640_validation_summary.md`
+- `figures/paper_figures/fig13_r33_non_yolo_full_validation.png`
+- `figures/paper_figures/fig13_r33_non_yolo_full_validation.svg`
+
+Boundary: the RetinaNet 1-epoch run is retained as `data_processed/non_yolo/r33_retinanet_1ep_640_lodo_results.csv` for transparency because it was too shallow to support the manuscript detector-family claim. The v20 manuscript uses the four-epoch RetinaNet check.
 
 ## V19 Manuscript-Facing Derived Outputs
 
