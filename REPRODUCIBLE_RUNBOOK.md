@@ -1,6 +1,6 @@
 # Reproducible Runbook
 
-Status: R08 frozen subset, completed G4 release-candidate runbook, manuscript-facing derived-table/figure export, Faster R-CNN detector-family validation, and RetinaNet minimal architecture validation.
+Status: R08 frozen subset, completed G4 release-candidate runbook, manuscript-facing derived-table/figure export, Faster R-CNN detector-family validation, RetinaNet minimal architecture validation, and RT-DETR-L transformer-family validation.
 
 ## Expected Local Inputs
 
@@ -23,7 +23,8 @@ Status: R08 frozen subset, completed G4 release-candidate runbook, manuscript-fa
 11. Export non-sensitive manuscript-facing source tables and generated figures for submission traceability.
 12. Run the bounded one-epoch Faster R-CNN detector-family probe on the same frozen ordinary and LODO subsets.
 13. Run the R33 640-subset non-YOLO validation layer: eight-epoch Faster R-CNN and four-epoch RetinaNet.
-14. Export v19/v20 calibration, domain-descriptor, six-boundary reporting-standard, and non-YOLO detector-family derived tables.
+14. Run the R34 RT-DETR-L transformer-family validation layer: eight-epoch ordinary and seven-domain LODO.
+15. Export v19/v20/v21 calibration, domain-descriptor, six-boundary reporting-standard, and detector-family derived tables.
 
 ## R08 Frozen Subset Commands
 
@@ -123,11 +124,37 @@ R33 key derived outputs:
 
 Boundary: the RetinaNet 1-epoch run is retained as `data_processed/non_yolo/r33_retinanet_1ep_640_lodo_results.csv` for transparency because it was too shallow to support the manuscript detector-family claim. The v20 manuscript uses the four-epoch RetinaNet check.
 
+## R34 RT-DETR-L Transformer-Family Validation Layer
+
+The v21 evidence layer adds RT-DETR-L on the same frozen 640-image/source-domain ordinary and seven-domain LODO subsets. This is a transformer-family reliability check, not a tuned detector leaderboard. The command below assumes `rtdetr-l.pt` is available locally or can be downloaded by the Ultralytics runtime.
+
+RT-DETR-L 8-epoch run:
+
+```powershell
+python scripts/61_run_r34_rtdetr_lodo.py --settings ordinary heldout_China_Drone heldout_China_MotorBike heldout_Czech_Republic heldout_India heldout_Japan heldout_Norway heldout_United_States --epochs 8 --imgsz 640 --batch 2 --project outputs/r34/rtdetr_l_640_train --csv data_processed/non_yolo/r34_rtdetr_l_8ep_640_lodo_results.csv --summary outputs/non_yolo/r34_rtdetr_l_8ep_640_lodo_summary.md --skip-existing
+```
+
+R34 key derived outputs:
+
+- `data_processed/non_yolo/r34_rtdetr_l_8ep_640_lodo_results.csv`
+- `data_processed/non_yolo/r34_detector_family_640_combined_results.csv`
+- `data_processed/non_yolo/r34_detector_family_640_model_summary.csv`
+- `data_processed/non_yolo/r34_detector_family_640_domain_summary.csv`
+- `outputs/non_yolo/r34_rtdetr_l_8ep_640_lodo_summary.md`
+- `data_processed/paper_tables/v21_r34_rtdetr_l_8ep_640_lodo_results.csv`
+- `data_processed/paper_tables/v21_r34_detector_family_640_combined_results.csv`
+- `data_processed/paper_tables/v21_r34_detector_family_640_model_summary.csv`
+- `data_processed/paper_tables/v21_r34_detector_family_640_domain_summary.csv`
+- `figures/paper_figures/fig14_r34_rtdetr_detector_family_validation.png`
+- `figures/paper_figures/fig14_r34_rtdetr_detector_family_validation.svg`
+
+Boundary: RT-DETR-L is trained for eight epochs with a fixed seed on subset-scale data. It reduces detector-family specificity risk but does not establish tuned architecture superiority, full-scale leaderboard performance, or deployment readiness.
+
 ## V19 Manuscript-Facing Derived Outputs
 
 The following directories provide the public, non-sensitive traceability layer for the v19 manuscript text:
 
-- `data_processed/paper_tables/`: derived CSV tables used for manuscript numbers, including domain inventories, ordinary-vs-LODO summaries, budget-sweep summaries, domain/class diagnostics, Faster R-CNN detector-family results, threshold-frontier tables, canonical calibration diagnostics, sampled domain image descriptors, domain-descriptor screening correlations, and the six-boundary reporting-standard table.
+- `data_processed/paper_tables/`: derived CSV tables used for manuscript numbers, including domain inventories, ordinary-vs-LODO summaries, budget-sweep summaries, domain/class diagnostics, detector-family results for Faster R-CNN, RetinaNet, and RT-DETR-L, threshold-frontier tables, canonical calibration diagnostics, sampled domain image descriptors, domain-descriptor screening correlations, and the six-boundary reporting-standard table.
 - `figures/paper_figures/`: generated PNG/SVG manuscript figures, including `fig12_calibration_descriptor_audit`.
 
 Key v19 additions:

@@ -4,7 +4,7 @@ Clean public reproducibility package for the RoadDamage-DG paper project:
 
 **Domain-Aware Reliability Boundaries for Infrastructure Image-Based Road-Damage Detection**
 
-Status: v20 public release candidate, 2026-05-21. This repository contains code, configs, compact derived summaries, manuscript-facing derived tables, script-generated figures, completed Faster R-CNN 8-epoch detector-family validation, RetinaNet 4-epoch minimal architecture validation, and v20 reliability-audit outputs. Raw RDD2022 archives, extracted images, active manuscript drafts, cover letters, reviewer-response drafts, internal rounds, and logs are not redistributed here.
+Status: v21 public release candidate, 2026-05-21. This repository contains code, configs, compact derived summaries, manuscript-facing derived tables, script-generated figures, completed Faster R-CNN 8-epoch detector-family validation, RetinaNet 4-epoch minimal architecture validation, RT-DETR-L 8-epoch transformer-family validation, and v21 reliability-audit outputs. Raw RDD2022 archives, extracted images, active manuscript drafts, cover letters, reviewer-response drafts, internal rounds, trained weights, and logs are not redistributed here.
 
 ## Scope
 
@@ -17,9 +17,10 @@ This repository is intended to reproduce:
 - YOLO frozen subset baselines;
 - a completed eight-epoch torchvision Faster R-CNN MobileNetV3-320-FPN ordinary-plus-seven-LODO detector-family check;
 - a four-epoch torchvision RetinaNet ResNet50-FPN ordinary-plus-seven-LODO minimal architecture check;
+- an eight-epoch Ultralytics RT-DETR-L ordinary-plus-seven-LODO transformer-family check;
 - prediction export, calibration, risk-coverage, image-level coverage, label-boundary overlap, and failure-taxonomy tables;
 - the completed G4 evidence matrix, run manifest, summaries, and figures;
-- the v20 manuscript-facing derived tables and generated figures.
+- the v21 manuscript-facing derived tables and generated figures.
 
 ## Current G4 Evidence Layer
 
@@ -78,6 +79,21 @@ Key R33 non-YOLO detector-family validation files:
 - `figures/paper_figures/fig13_r33_non_yolo_full_validation.png`
 - `figures/paper_figures/fig13_r33_non_yolo_full_validation.svg`
 
+Key R34 RT-DETR transformer-family validation files:
+
+- `scripts/61_run_r34_rtdetr_lodo.py`
+- `data_processed/non_yolo/r34_rtdetr_l_8ep_640_lodo_results.csv`
+- `data_processed/non_yolo/r34_detector_family_640_combined_results.csv`
+- `data_processed/non_yolo/r34_detector_family_640_model_summary.csv`
+- `data_processed/non_yolo/r34_detector_family_640_domain_summary.csv`
+- `outputs/non_yolo/r34_rtdetr_l_8ep_640_lodo_summary.md`
+- `data_processed/paper_tables/v21_r34_rtdetr_l_8ep_640_lodo_results.csv`
+- `data_processed/paper_tables/v21_r34_detector_family_640_combined_results.csv`
+- `data_processed/paper_tables/v21_r34_detector_family_640_model_summary.csv`
+- `data_processed/paper_tables/v21_r34_detector_family_640_domain_summary.csv`
+- `figures/paper_figures/fig14_r34_rtdetr_detector_family_validation.png`
+- `figures/paper_figures/fig14_r34_rtdetr_detector_family_validation.svg`
+
 Earlier bounded one-epoch Faster R-CNN probe files retained for traceability:
 
 - `scripts/55_run_fasterrcnn_probe.py`
@@ -93,6 +109,15 @@ Key v20 reliability-guidance additions:
 - `data_processed/paper_tables/v20_r33_non_yolo_640_domain_summary.csv`
 - `figures/paper_figures/fig13_r33_non_yolo_full_validation.png`
 - `figures/paper_figures/fig13_r33_non_yolo_full_validation.svg`
+
+Key v21 reliability-guidance additions:
+
+- `data_processed/paper_tables/v21_r34_rtdetr_l_8ep_640_lodo_results.csv`
+- `data_processed/paper_tables/v21_r34_detector_family_640_combined_results.csv`
+- `data_processed/paper_tables/v21_r34_detector_family_640_model_summary.csv`
+- `data_processed/paper_tables/v21_r34_detector_family_640_domain_summary.csv`
+- `figures/paper_figures/fig14_r34_rtdetr_detector_family_validation.png`
+- `figures/paper_figures/fig14_r34_rtdetr_detector_family_validation.svg`
 
 Key v19 reliability-guidance additions:
 
