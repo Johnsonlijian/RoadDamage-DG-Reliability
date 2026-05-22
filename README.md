@@ -4,7 +4,7 @@ Clean public reproducibility package for the RoadDamage-DG paper project:
 
 **Domain-Aware Reliability Boundaries for Infrastructure Image-Based Road-Damage Detection**
 
-Status: v21 public release candidate, 2026-05-21. This repository contains code, configs, compact derived summaries, manuscript-facing derived tables, script-generated figures, completed Faster R-CNN 8-epoch detector-family validation, RetinaNet 4-epoch minimal architecture validation, RT-DETR-L 8-epoch transformer-family validation, and v21 reliability-audit outputs. Raw RDD2022 archives, extracted images, active manuscript drafts, cover letters, reviewer-response drafts, internal rounds, trained weights, and logs are not redistributed here.
+Status: v22 public release candidate, 2026-05-22. This repository contains code, configs, compact derived summaries, manuscript-facing derived tables, script-generated figures, completed Faster R-CNN 8-epoch detector-family validation, RetinaNet 4-epoch minimal architecture validation, RT-DETR-L 8-epoch transformer-family validation, and v22 reliability-audit outputs for the JCICE Technical Paper route. Raw RDD2022 archives, extracted images, active manuscript drafts, cover letters, reviewer-response drafts, internal rounds, trained weights, and logs are not redistributed here.
 
 ## Scope
 
@@ -20,7 +20,7 @@ This repository is intended to reproduce:
 - an eight-epoch Ultralytics RT-DETR-L ordinary-plus-seven-LODO transformer-family check;
 - prediction export, calibration, risk-coverage, image-level coverage, label-boundary overlap, and failure-taxonomy tables;
 - the completed G4 evidence matrix, run manifest, summaries, and figures;
-- the v21 manuscript-facing derived tables and generated figures.
+- the v22 manuscript-facing derived tables and generated figures.
 
 ## Current G4 Evidence Layer
 
@@ -118,6 +118,12 @@ Key v21 reliability-guidance additions:
 - `data_processed/paper_tables/v21_r34_detector_family_640_domain_summary.csv`
 - `figures/paper_figures/fig14_r34_rtdetr_detector_family_validation.png`
 - `figures/paper_figures/fig14_r34_rtdetr_detector_family_validation.svg`
+
+Key v22 JCICE Technical Paper additions:
+
+- `scripts/63_build_v22_jcice_technical_paper.py`
+- `figures/paper_figures/fig01_jcice_domain_aware_reliability_audit_framework.png`
+- `figures/paper_figures/fig01_jcice_domain_aware_reliability_audit_framework.svg`
 
 Key v19 reliability-guidance additions:
 

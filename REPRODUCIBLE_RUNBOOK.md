@@ -1,6 +1,6 @@
 # Reproducible Runbook
 
-Status: R08 frozen subset, completed G4 release-candidate runbook, manuscript-facing derived-table/figure export, Faster R-CNN detector-family validation, RetinaNet minimal architecture validation, and RT-DETR-L transformer-family validation.
+Status: R08 frozen subset, completed G4 release-candidate runbook, manuscript-facing derived-table/figure export, Faster R-CNN detector-family validation, RetinaNet minimal architecture validation, RT-DETR-L transformer-family validation, and JCICE Technical Paper framework-figure export.
 
 ## Expected Local Inputs
 
@@ -25,6 +25,7 @@ Status: R08 frozen subset, completed G4 release-candidate runbook, manuscript-fa
 13. Run the R33 640-subset non-YOLO validation layer: eight-epoch Faster R-CNN and four-epoch RetinaNet.
 14. Run the R34 RT-DETR-L transformer-family validation layer: eight-epoch ordinary and seven-domain LODO.
 15. Export v19/v20/v21 calibration, domain-descriptor, six-boundary reporting-standard, and detector-family derived tables.
+16. Export the v22 JCICE Technical Paper framework figure and target-specific reproducibility references.
 
 ## R08 Frozen Subset Commands
 
@@ -149,6 +150,19 @@ R34 key derived outputs:
 - `figures/paper_figures/fig14_r34_rtdetr_detector_family_validation.svg`
 
 Boundary: RT-DETR-L is trained for eight epochs with a fixed seed on subset-scale data. It reduces detector-family specificity risk but does not establish tuned architecture superiority, full-scale leaderboard performance, or deployment readiness.
+
+## V22 JCICE Technical Paper Figure Export
+
+The v22 route reframes the manuscript for the Journal of Computing in Civil Engineering Technical Paper format. The public repository includes the generated framework figure but does not include the active manuscript or cover letter.
+
+```powershell
+python scripts/63_build_v22_jcice_technical_paper.py
+```
+
+Public v22 figure outputs:
+
+- `figures/paper_figures/fig01_jcice_domain_aware_reliability_audit_framework.png`
+- `figures/paper_figures/fig01_jcice_domain_aware_reliability_audit_framework.svg`
 
 ## V19 Manuscript-Facing Derived Outputs
 
