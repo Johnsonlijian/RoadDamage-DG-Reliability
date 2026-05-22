@@ -4,7 +4,7 @@ Clean public reproducibility package for the RoadDamage-DG paper project:
 
 **Domain-Aware Reliability Boundaries for Infrastructure Image-Based Road-Damage Detection**
 
-Status: v23 public release candidate, 2026-05-22. This repository contains code, configs, compact derived summaries, manuscript-facing derived tables, script-generated figures, completed Faster R-CNN 8-epoch detector-family validation, RetinaNet 4-epoch minimal architecture validation, RT-DETR-L 8-epoch transformer-family validation, the JCICE Technical Paper framework figure, and the R36 small target-domain evidence check. Raw RDD2022 archives, extracted images, active manuscript drafts, cover letters, reviewer-response drafts, internal rounds, trained weights, and logs are not redistributed here.
+Status: v24 public release candidate, 2026-05-22. This repository contains code, configs, compact derived summaries, manuscript-facing derived tables, script-generated figures, completed Faster R-CNN 8-epoch detector-family validation, RetinaNet 4-epoch minimal architecture validation, RT-DETR-L 8-epoch transformer-family validation, the JCICE Technical Paper framework figure, the R36 small target-domain evidence check, and the R37 post-local-evidence confidence-frontier audit. Raw RDD2022 archives, extracted images, active manuscript drafts, cover letters, reviewer-response drafts, internal rounds, trained weights, and logs are not redistributed here.
 
 ## Scope
 
@@ -19,9 +19,10 @@ This repository is intended to reproduce:
 - a four-epoch torchvision RetinaNet ResNet50-FPN ordinary-plus-seven-LODO minimal architecture check;
 - an eight-epoch Ultralytics RT-DETR-L ordinary-plus-seven-LODO transformer-family check;
 - a small target-domain evidence check using source-only YOLOv8s LODO checkpoints and 10/20/40 labelled target-domain images under a held-out evaluation split;
+- a post-target-evidence prediction-export, calibration, and confidence-frontier audit comparing source-only and K=20 target-evidence checkpoints on the same target-evaluation splits;
 - prediction export, calibration, risk-coverage, image-level coverage, label-boundary overlap, and failure-taxonomy tables;
 - the completed G4 evidence matrix, run manifest, summaries, and figures;
-- the v23 manuscript-facing derived tables and generated figures.
+- the v24 manuscript-facing derived tables and generated figures.
 
 ## Current G4 Evidence Layer
 
@@ -122,7 +123,6 @@ Key v21 reliability-guidance additions:
 
 Key v22 JCICE Technical Paper additions:
 
-- `scripts/63_build_v22_jcice_technical_paper.py`
 - `figures/paper_figures/fig01_jcice_domain_aware_reliability_audit_framework.png`
 - `figures/paper_figures/fig01_jcice_domain_aware_reliability_audit_framework.svg`
 
@@ -133,6 +133,14 @@ Key R36/v23 local target-evidence additions:
 - `outputs/r36/r36_target_domain_evidence_summary.md`
 - `figures/paper_figures/fig15_r36_target_domain_evidence_check.png`
 - `figures/paper_figures/fig15_r36_target_domain_evidence_check.svg`
+
+Key R37/v24 post-local-evidence confidence-frontier additions:
+
+- `scripts/66_run_r37_target_evidence_frontier.py`
+- `data_processed/r37_target_evidence_frontier/r37_target_evidence_frontier_summary.csv`
+- `outputs/r37/r37_target_evidence_frontier_summary.md`
+- `figures/paper_figures/fig16_r37_target_evidence_confidence_frontier.png`
+- `figures/paper_figures/fig16_r37_target_evidence_confidence_frontier.svg`
 
 Key v19 reliability-guidance additions:
 

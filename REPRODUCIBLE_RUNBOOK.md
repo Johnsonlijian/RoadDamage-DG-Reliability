@@ -1,6 +1,6 @@
 # Reproducible Runbook
 
-Status: R08 frozen subset, completed G4 release-candidate runbook, manuscript-facing derived-table/figure export, Faster R-CNN detector-family validation, RetinaNet minimal architecture validation, RT-DETR-L transformer-family validation, JCICE Technical Paper framework-figure export, and R36 small target-domain evidence check.
+Status: R08 frozen subset, completed G4 release-candidate runbook, manuscript-facing derived-table/figure export, Faster R-CNN detector-family validation, RetinaNet minimal architecture validation, RT-DETR-L transformer-family validation, JCICE Technical Paper framework-figure export, R36 small target-domain evidence check, and R37 post-local-evidence confidence-frontier audit.
 
 ## Expected Local Inputs
 
@@ -27,6 +27,7 @@ Status: R08 frozen subset, completed G4 release-candidate runbook, manuscript-fa
 15. Export v19/v20/v21 calibration, domain-descriptor, six-boundary reporting-standard, and detector-family derived tables.
 16. Export the v22 JCICE Technical Paper framework figure and target-specific reproducibility references.
 17. Run the R36 small target-domain evidence check and export the local-evidence sufficiency figure.
+18. Run the R37 post-local-evidence prediction-export, calibration, and confidence-frontier audit.
 
 ## R08 Frozen Subset Commands
 
@@ -154,11 +155,7 @@ Boundary: RT-DETR-L is trained for eight epochs with a fixed seed on subset-scal
 
 ## V22 JCICE Technical Paper Figure Export
 
-The v22 route reframes the manuscript for the Journal of Computing in Civil Engineering Technical Paper format. The public repository includes the generated framework figure but does not include the active manuscript or cover letter.
-
-```powershell
-python scripts/63_build_v22_jcice_technical_paper.py
-```
+The v22 route reframes the manuscript for the Journal of Computing in Civil Engineering Technical Paper format. The public repository includes the generated framework figure but does not include the active manuscript, cover letter, or private submission-package build script.
 
 Public v22 figure outputs:
 
@@ -189,6 +186,23 @@ R36 key derived outputs:
 - `figures/paper_figures/fig15_r36_target_domain_evidence_check.svg`
 
 Boundary: R36 uses single-seed local fine-tuning from existing source-only LODO checkpoints. It supports an evidence-boundary claim about local target labels, not deployment readiness, final calibration policy, or a domain-adaptation method ranking.
+
+## R37 Post-Local-Evidence Confidence-Frontier Audit
+
+The v24 evidence layer compares prediction exports from source-only YOLOv8s LODO checkpoints and the K=20 target-evidence checkpoints on the same R36 target-evaluation splits. It tests whether local-evidence mAP gains also change fixed-threshold precision and retained prediction coverage.
+
+```powershell
+python scripts/66_run_r37_target_evidence_frontier.py --imgsz 640 --conf 0.001 --iou-threshold 0.5 --device 0 --bins 10 --skip-existing
+```
+
+R37 key derived outputs:
+
+- `data_processed/r37_target_evidence_frontier/r37_target_evidence_frontier_summary.csv`
+- `outputs/r37/r37_target_evidence_frontier_summary.md`
+- `figures/paper_figures/fig16_r37_target_evidence_confidence_frontier.png`
+- `figures/paper_figures/fig16_r37_target_evidence_confidence_frontier.svg`
+
+Boundary: R37 uses single-seed prediction exports and fixed threshold grids. It supports a confidence-frontier evidence-boundary claim, not an operational referral threshold or agency workload model.
 
 ## V19 Manuscript-Facing Derived Outputs
 
