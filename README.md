@@ -4,7 +4,7 @@ Clean public reproducibility package for the RoadDamage-DG paper project:
 
 **Domain-Aware Reliability Boundaries for Infrastructure Image-Based Road-Damage Detection**
 
-Status: v22 public release candidate, 2026-05-22. This repository contains code, configs, compact derived summaries, manuscript-facing derived tables, script-generated figures, completed Faster R-CNN 8-epoch detector-family validation, RetinaNet 4-epoch minimal architecture validation, RT-DETR-L 8-epoch transformer-family validation, and v22 reliability-audit outputs for the JCICE Technical Paper route. Raw RDD2022 archives, extracted images, active manuscript drafts, cover letters, reviewer-response drafts, internal rounds, trained weights, and logs are not redistributed here.
+Status: v23 public release candidate, 2026-05-22. This repository contains code, configs, compact derived summaries, manuscript-facing derived tables, script-generated figures, completed Faster R-CNN 8-epoch detector-family validation, RetinaNet 4-epoch minimal architecture validation, RT-DETR-L 8-epoch transformer-family validation, the JCICE Technical Paper framework figure, and the R36 small target-domain evidence check. Raw RDD2022 archives, extracted images, active manuscript drafts, cover letters, reviewer-response drafts, internal rounds, trained weights, and logs are not redistributed here.
 
 ## Scope
 
@@ -18,9 +18,10 @@ This repository is intended to reproduce:
 - a completed eight-epoch torchvision Faster R-CNN MobileNetV3-320-FPN ordinary-plus-seven-LODO detector-family check;
 - a four-epoch torchvision RetinaNet ResNet50-FPN ordinary-plus-seven-LODO minimal architecture check;
 - an eight-epoch Ultralytics RT-DETR-L ordinary-plus-seven-LODO transformer-family check;
+- a small target-domain evidence check using source-only YOLOv8s LODO checkpoints and 10/20/40 labelled target-domain images under a held-out evaluation split;
 - prediction export, calibration, risk-coverage, image-level coverage, label-boundary overlap, and failure-taxonomy tables;
 - the completed G4 evidence matrix, run manifest, summaries, and figures;
-- the v22 manuscript-facing derived tables and generated figures.
+- the v23 manuscript-facing derived tables and generated figures.
 
 ## Current G4 Evidence Layer
 
@@ -124,6 +125,14 @@ Key v22 JCICE Technical Paper additions:
 - `scripts/63_build_v22_jcice_technical_paper.py`
 - `figures/paper_figures/fig01_jcice_domain_aware_reliability_audit_framework.png`
 - `figures/paper_figures/fig01_jcice_domain_aware_reliability_audit_framework.svg`
+
+Key R36/v23 local target-evidence additions:
+
+- `scripts/64_run_r36_target_domain_finetune.py`
+- `data_processed/r36_target_domain_evidence/r36_yolov8s_target_domain_evidence_results.csv`
+- `outputs/r36/r36_target_domain_evidence_summary.md`
+- `figures/paper_figures/fig15_r36_target_domain_evidence_check.png`
+- `figures/paper_figures/fig15_r36_target_domain_evidence_check.svg`
 
 Key v19 reliability-guidance additions:
 

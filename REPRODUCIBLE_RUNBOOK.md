@@ -1,6 +1,6 @@
 # Reproducible Runbook
 
-Status: R08 frozen subset, completed G4 release-candidate runbook, manuscript-facing derived-table/figure export, Faster R-CNN detector-family validation, RetinaNet minimal architecture validation, RT-DETR-L transformer-family validation, and JCICE Technical Paper framework-figure export.
+Status: R08 frozen subset, completed G4 release-candidate runbook, manuscript-facing derived-table/figure export, Faster R-CNN detector-family validation, RetinaNet minimal architecture validation, RT-DETR-L transformer-family validation, JCICE Technical Paper framework-figure export, and R36 small target-domain evidence check.
 
 ## Expected Local Inputs
 
@@ -26,6 +26,7 @@ Status: R08 frozen subset, completed G4 release-candidate runbook, manuscript-fa
 14. Run the R34 RT-DETR-L transformer-family validation layer: eight-epoch ordinary and seven-domain LODO.
 15. Export v19/v20/v21 calibration, domain-descriptor, six-boundary reporting-standard, and detector-family derived tables.
 16. Export the v22 JCICE Technical Paper framework figure and target-specific reproducibility references.
+17. Run the R36 small target-domain evidence check and export the local-evidence sufficiency figure.
 
 ## R08 Frozen Subset Commands
 
@@ -163,6 +164,31 @@ Public v22 figure outputs:
 
 - `figures/paper_figures/fig01_jcice_domain_aware_reliability_audit_framework.png`
 - `figures/paper_figures/fig01_jcice_domain_aware_reliability_audit_framework.svg`
+
+## R36 Small Target-Domain Evidence Check
+
+The v23 evidence layer fine-tunes each source-only YOLOv8s 640-image/source-domain LODO checkpoint after adding a small number of labelled images from the held-out target domain. The added target-domain images are removed from the target evaluation split. This is a local-evidence sufficiency check, not a tuned domain-adaptation leaderboard.
+
+Full seven-domain K=20 check:
+
+```powershell
+python scripts/64_run_r36_target_domain_finetune.py --target-ks 20 --epochs 4 --imgsz 640 --batch 8 --device 0 --workers 0 --seed 20260512 --skip-existing
+```
+
+Weak/informative-domain dose check:
+
+```powershell
+python scripts/64_run_r36_target_domain_finetune.py --domains India Norway China_MotorBike --target-ks 10 40 --epochs 4 --imgsz 640 --batch 8 --device 0 --workers 0 --seed 20260512 --skip-existing
+```
+
+R36 key derived outputs:
+
+- `data_processed/r36_target_domain_evidence/r36_yolov8s_target_domain_evidence_results.csv`
+- `outputs/r36/r36_target_domain_evidence_summary.md`
+- `figures/paper_figures/fig15_r36_target_domain_evidence_check.png`
+- `figures/paper_figures/fig15_r36_target_domain_evidence_check.svg`
+
+Boundary: R36 uses single-seed local fine-tuning from existing source-only LODO checkpoints. It supports an evidence-boundary claim about local target labels, not deployment readiness, final calibration policy, or a domain-adaptation method ranking.
 
 ## V19 Manuscript-Facing Derived Outputs
 
