@@ -1,17 +1,19 @@
 cff-version: 1.2.0
-message: "If you use this reproducibility package, please cite the associated paper and dataset."
+message: "If you use this reproducibility package, please cite the associated manuscript and this repository."
 title: "RoadDamage-DG Reliability Package"
 authors:
-  - family-names: "Li"
-    given-names: "Johnson"
+  - family-names: "REN"
+    given-names: "Lijian"
+    orcid: "https://orcid.org/0000-0003-1629-4368"
 year: 2026
 license: MIT
 repository-code: "https://github.com/Johnsonlijian/RoadDamage-DG-Reliability"
 preferred-citation:
   type: article
-  title: "Domain-Aware Reliability Boundaries for Infrastructure Image-Based Road-Damage Detection"
+  title: "Service-domain evidence gates for automated road-damage maintenance screening"
   authors:
-    - family-names: "Li"
-      given-names: "Johnson"
+    - family-names: "REN"
+      given-names: "Lijian"
+      orcid: "https://orcid.org/0000-0003-1629-4368"
   year: 2026
   status: "in preparation"

@@ -1,0 +1,22 @@
+{
+  "title": "RoadDamage-DG Reliability Package: service-domain evidence gates for automated road-damage maintenance screening",
+  "creators": [
+    {
+      "name": "REN, Lijian",
+      "orcid": "0000-0003-1629-4368",
+      "affiliation": "Inner Mongolia University of Technology"
+    }
+  ],
+  "description": "Public-safe reproducibility package for derived road-damage domain-generalization and service-domain acceptance-gate analyses. The package contains code, configurations, compact derived tables, and generated figure assets; it excludes raw third-party images, trained weights, active manuscripts, cover letters, internal rounds, logs, and credentials.",
+  "license": "MIT",
+  "keywords": [
+    "road damage detection",
+    "automated inspection",
+    "domain shift",
+    "local-label demand",
+    "maintenance screening",
+    "Automation in Construction"
+  ],
+  "upload_type": "software",
+  "access_right": "open"
+}

@@ -1,0 +1,6 @@
+domain,class,tp,fn,n,recall,seeds
+Norway,D40,0,29,29,0.0,2
+India,D40,9,111,120,0.075,2
+Japan,D40,6,41,47,0.1276595744680851,2
+China_MotorBike,D40,2,17,19,0.10526315789473684,2
+Norway,All,106,584,690,0.1536231884057971,2

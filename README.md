@@ -2,9 +2,9 @@
 
 Clean public reproducibility package for the RoadDamage-DG paper project:
 
-**Domain-Aware Reliability Boundaries for Infrastructure Image-Based Road-Damage Detection**
+**Service-domain evidence gates for automated road-damage maintenance screening**
 
-Status: v24 public release candidate, 2026-05-22. This repository contains code, configs, compact derived summaries, manuscript-facing derived tables, script-generated figures, completed Faster R-CNN 8-epoch detector-family validation, RetinaNet 4-epoch minimal architecture validation, RT-DETR-L 8-epoch transformer-family validation, the JCICE Technical Paper framework figure, the R36 small target-domain evidence check, and the R37 post-local-evidence confidence-frontier audit. Raw RDD2022 archives, extracted images, active manuscript drafts, cover letters, reviewer-response drafts, internal rounds, trained weights, and logs are not redistributed here.
+Status: R59 AutCon acceptance-gate public reproducibility package, 2026-06-14. This repository contains code, configs, compact derived summaries, manuscript-facing derived tables, script-generated figures, completed detector-family validation layers, R41 public-safe split/job/pilot-card infrastructure, and the R43/R59 fixed-evaluation K* evidence tables and figure assets used to support the current Automation in Construction route. Raw RDD2022 archives, extracted images, active manuscript drafts, cover letters, reviewer-response drafts, internal rounds, trained weights, local image/XML path registries, and logs are not redistributed here.
 
 ## Scope
 
@@ -20,6 +20,8 @@ This repository is intended to reproduce:
 - an eight-epoch Ultralytics RT-DETR-L ordinary-plus-seven-LODO transformer-family check;
 - a small target-domain evidence check using source-only YOLOv8s LODO checkpoints and 10/20/40 labelled target-domain images under a held-out evaluation split;
 - a post-target-evidence prediction-export, calibration, and confidence-frontier audit comparing source-only and K=20 target-evidence checkpoints on the same target-evaluation splits;
+- R41 FAIR-InfraAudit pilot fairness/K* summaries and a full K-grid split/job manifest for future GPU execution;
+- the R43/R59 fixed-evaluation K* acceptance-gate summaries, two-seed error-burden diagnostic source table, public literature additions, and generated AutCon figure assets;
 - prediction export, calibration, risk-coverage, image-level coverage, label-boundary overlap, and failure-taxonomy tables;
 - the completed G4 evidence matrix, run manifest, summaries, and figures;
 - the v24 manuscript-facing derived tables and generated figures.
@@ -121,7 +123,7 @@ Key v21 reliability-guidance additions:
 - `figures/paper_figures/fig14_r34_rtdetr_detector_family_validation.png`
 - `figures/paper_figures/fig14_r34_rtdetr_detector_family_validation.svg`
 
-Key v22 JCICE Technical Paper additions:
+Key v22 previous technical-paper additions:
 
 - `figures/paper_figures/fig01_jcice_domain_aware_reliability_audit_framework.png`
 - `figures/paper_figures/fig01_jcice_domain_aware_reliability_audit_framework.svg`
@@ -141,6 +143,54 @@ Key R37/v24 post-local-evidence confidence-frontier additions:
 - `outputs/r37/r37_target_evidence_frontier_summary.md`
 - `figures/paper_figures/fig16_r37_target_evidence_confidence_frontier.png`
 - `figures/paper_figures/fig16_r37_target_evidence_confidence_frontier.svg`
+
+Key R41 FAIR-InfraAudit public-safe additions:
+
+- `scripts/71_fair_infraaudit_metrics.py`
+- `scripts/72_estimate_kstar_from_results.py`
+- `scripts/73_make_r41_kgrid_splits.py`
+- `scripts/74_materialize_r41_yolo_dataset.py`
+- `scripts/75_build_r41_training_manifest.py`
+- `scripts/76_run_r41_yolo_job.py`
+- `scripts/77_r41_completion_dashboard.py`
+- `scripts/81_build_audit_cards.py`
+- `configs/r41_operating_points.yaml`
+- `splits/r41/rdd2022_fair_infraaudit_splits.json`
+- `data_processed/r41_kgrid_splits/rdd2022_r41_domain_splits.csv`
+- `data_processed/r41_kgrid_splits/rdd2022_r41_budget_plan.csv`
+- `data_processed/r41_kgrid_splits/r41_training_job_manifest.csv`
+- `data_processed/r41_fair_infraaudit/audit_cards_pilot.csv`
+- `data_processed/r41_fair_infraaudit/r41_full_sprint_status.csv`
+- `data_processed/r41_external_validation/rdd2020_provenance_check.csv`
+- `outputs/r41/r41_kgrid_split_summary.md`
+- `outputs/r41/r41_training_job_manifest_summary.md`
+- `outputs/r41/r41_full_sprint_completion_dashboard.md`
+- `outputs/r41/r41_rdd2020_external_validation_provenance.md`
+
+R41 boundary: these additions make the Nature Portfolio FAIR-InfraAudit route executable, but they do not contain completed full-grid GPU training, final K* estimates, final uncertainty intervals, RDD2020 external validation, or submission-ready claims.
+
+Key R59 AutCon acceptance-gate public additions:
+
+- `scripts/84_r59_acceptance_gate_public.py`
+- `data_processed/r59_acceptance_gate/source_tables/r43_kgrid_results.csv`
+- `data_processed/r59_acceptance_gate/source_tables/r43_dose_curves.csv`
+- `data_processed/r59_acceptance_gate/source_tables/r43_kstar_summary.md`
+- `data_processed/r59_acceptance_gate/source_tables/r43_fairness_multiseed_domain_class.csv`
+- `data_processed/r59_acceptance_gate/source_tables/r43_active_results.csv`
+- `data_processed/r59_acceptance_gate/source_tables/r43_family8n_results.csv`
+- `data_processed/r59_acceptance_gate/source_tables/r59_acceptance_decision_dashboard.csv`
+- `data_processed/r59_acceptance_gate/source_tables/r59_error_burden_two_seed_summary.csv`
+- `data_processed/r59_acceptance_gate/source_tables/r59_public_literature_additions.csv`
+- `outputs/r59/r59_acceptance_gate_summary.md`
+- `figures/autcon_r59/Figure_1_fixed_evaluation_protocol.svg`
+- `figures/autcon_r59/Figure_2_validation_gap_and_source_scale.svg`
+- `figures/autcon_r59/Figure_3_censored_local_label_demand.svg`
+- `figures/autcon_r59/Figure_4_acceptance_decision_dashboard.svg`
+- `figures/autcon_r59/Figure_5_service_domain_error_burden.svg`
+- `figures/autcon_r59/Figure_6_confidence_frontier.svg`
+- `figures/autcon_r59/Figure_7_detector_family_boundary.svg`
+
+R59 boundary: these additions support the fixed-evaluation service-domain acceptance-gate analysis. The package does not include active submission manuscripts, cover letters, internal round reports, raw third-party images, or trained weights. The two-seed service-domain/class error-burden table is a diagnostic, not a three-seed inferential statistic or a deployment threshold.
 
 Key v19 reliability-guidance additions:
 
@@ -180,6 +230,7 @@ This repository must not contain:
 - internal `rounds/` or `logs/`;
 - reviewer-response or cover-letter drafts;
 - credentials or local virtual environments.
+- raw local image/XML path registries such as `rdd2022_r41_image_registry.csv` or sample-level manifests with absolute paths;
 
 ## Intended Remote
 

@@ -1,3 +1,4 @@
 name,url,doi,license,notes
 RDD2022 Figshare,https://figshare.com/articles/dataset/RDD2022_-_The_multi-national_Road_Damage_Dataset_released_through_CRDDC_2022/21431547,10.6084/m9.figshare.21431547.v1,CC BY 4.0,Primary dataset; raw files are not redistributed here.
 N-RDD2024 Mendeley Data,https://data.mendeley.com/datasets/27c8pwsd6v/5,10.17632/27c8pwsd6v.5,CC BY 4.0,Optional extension; not part of current frozen baseline.
+R59 public literature and standards additions,./data_processed/r59_acceptance_gate/source_tables/r59_public_literature_additions.csv,,mixed official URLs and verified DOI records,Public FHWA/ASTM/AutCon/road-damage literature provenance used for R59 positioning; not a raw dataset.

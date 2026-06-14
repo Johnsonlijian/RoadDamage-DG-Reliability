@@ -1,6 +1,6 @@
 # Reproducible Runbook
 
-Status: R08 frozen subset, completed G4 release-candidate runbook, manuscript-facing derived-table/figure export, Faster R-CNN detector-family validation, RetinaNet minimal architecture validation, RT-DETR-L transformer-family validation, JCICE Technical Paper framework-figure export, R36 small target-domain evidence check, and R37 post-local-evidence confidence-frontier audit.
+Status: R08 frozen subset, completed G4 release-candidate runbook, manuscript-facing derived-table/figure export, Faster R-CNN detector-family validation, RetinaNet minimal architecture validation, RT-DETR-L transformer-family validation, previous technical-paper framework-figure export, R36 small target-domain evidence check, R37 post-local-evidence confidence-frontier audit, R41 FAIR-InfraAudit split/job/pilot-card infrastructure, and R59 AutCon fixed-evaluation acceptance-gate derived tables/figures.
 
 ## Expected Local Inputs
 
@@ -25,9 +25,11 @@ Status: R08 frozen subset, completed G4 release-candidate runbook, manuscript-fa
 13. Run the R33 640-subset non-YOLO validation layer: eight-epoch Faster R-CNN and four-epoch RetinaNet.
 14. Run the R34 RT-DETR-L transformer-family validation layer: eight-epoch ordinary and seven-domain LODO.
 15. Export v19/v20/v21 calibration, domain-descriptor, six-boundary reporting-standard, and detector-family derived tables.
-16. Export the v22 JCICE Technical Paper framework figure and target-specific reproducibility references.
+16. Export the v22 previous technical-paper framework figure and target-specific reproducibility references.
 17. Run the R36 small target-domain evidence check and export the local-evidence sufficiency figure.
 18. Run the R37 post-local-evidence prediction-export, calibration, and confidence-frontier audit.
+19. Run the R41 FAIR-InfraAudit preparation chain: fairness/K* pilot summaries, full K-grid split registry, GPU job manifest, completion dashboard, and pilot readiness cards.
+20. Rebuild the public-safe R59 acceptance-gate summary from included derived source tables.
 
 ## R08 Frozen Subset Commands
 
@@ -153,9 +155,9 @@ R34 key derived outputs:
 
 Boundary: RT-DETR-L is trained for eight epochs with a fixed seed on subset-scale data. It reduces detector-family specificity risk but does not establish tuned architecture superiority, full-scale leaderboard performance, or deployment readiness.
 
-## V22 JCICE Technical Paper Figure Export
+## V22 Previous Technical-Paper Figure Export
 
-The v22 route reframes the manuscript for the Journal of Computing in Civil Engineering Technical Paper format. The public repository includes the generated framework figure but does not include the active manuscript, cover letter, or private submission-package build script.
+The v22 route generated a previous technical-paper framework figure. The public repository includes the generated framework figure but does not include any active manuscript, cover letter, reviewer-response material, or private submission-package build script.
 
 Public v22 figure outputs:
 
@@ -203,6 +205,82 @@ R37 key derived outputs:
 - `figures/paper_figures/fig16_r37_target_evidence_confidence_frontier.svg`
 
 Boundary: R37 uses single-seed prediction exports and fixed threshold grids. It supports a confidence-frontier evidence-boundary claim, not an operational referral threshold or agency workload model.
+
+## R41 FAIR-InfraAudit Preparation Chain
+
+R41 reframes the project as a reliability, fairness, calibration, selective-risk, and local-data-demand audit framework. The public package contains the preparation chain and pilot summaries only. It does not contain final full-grid training results, final K* estimates, final uncertainty intervals, RDD2020 external-validation results, or submission-ready audit cards.
+
+Generate pilot fairness and K* gap summaries from existing R36/R37 derived outputs:
+
+```powershell
+python scripts/71_fair_infraaudit_metrics.py
+python scripts/72_estimate_kstar_from_results.py
+python scripts/81_build_audit_cards.py
+```
+
+Freeze the public-safe image-ID split registry and training job manifest:
+
+```powershell
+python scripts/73_make_r41_kgrid_splits.py
+python scripts/75_build_r41_training_manifest.py
+python scripts/77_r41_completion_dashboard.py
+```
+
+Dry-run one local training job without materializing or training:
+
+```powershell
+python scripts/76_run_r41_yolo_job.py --domain India --K 20 --seed 20260609 --strategy random --model yolov8s.pt --epochs 1 --imgsz 320 --batch 4 --device cpu --dry-run
+```
+
+Local-only commands that materialize YOLO datasets or train models may create raw-image hardlinks/copies under ignored directories. Do not commit those generated directories:
+
+- `data_processed/r41_yolo_kgrid/`
+- `data_processed/r41_kgrid_results/`
+- `outputs/r41/kgrid_train/`
+
+R41 public-safe outputs:
+
+- `splits/r41/rdd2022_fair_infraaudit_splits.json`
+- `data_processed/r41_kgrid_splits/rdd2022_r41_domain_splits.csv`
+- `data_processed/r41_kgrid_splits/rdd2022_r41_budget_plan.csv`
+- `data_processed/r41_kgrid_splits/r41_training_job_manifest.csv`
+- `data_processed/r41_fair_infraaudit/audit_cards_pilot.csv`
+- `data_processed/r41_fair_infraaudit/r41_full_sprint_status.csv`
+- `data_processed/r41_external_validation/rdd2020_provenance_check.csv`
+- `outputs/r41/*.md`
+
+R41 local-only outputs that must not be redistributed:
+
+- `data_processed/r41_kgrid_splits/rdd2022_r41_image_registry.csv`
+- `data_processed/r41_kgrid_splits/rdd2022_r41_budget_samples.csv`
+
+Boundary: R41 currently proves that the full-evidence route is executable. It does not prove final fairness, final K*, deployment readiness, or external generality until the full K-grid, multi-seed uncertainty, prediction exports, and RDD2020 external validation are complete.
+
+## R59 AutCon Acceptance-Gate Derived Layer
+
+The R59 layer contains the public-safe derived tables and figure assets for the current Automation in Construction route. It centers a fixed-evaluation K* audit: each service domain is evaluated on an unchanged target split, and local-label demand is reported as finite, seed-sensitive, or censored under a predeclared mAP50 audit criterion.
+
+Rebuild the public-safe summary:
+
+```powershell
+python scripts/84_r59_acceptance_gate_public.py
+```
+
+R59 key derived outputs:
+
+- `data_processed/r59_acceptance_gate/source_tables/r43_kgrid_results.csv`
+- `data_processed/r59_acceptance_gate/source_tables/r43_dose_curves.csv`
+- `data_processed/r59_acceptance_gate/source_tables/r43_kstar_summary.md`
+- `data_processed/r59_acceptance_gate/source_tables/r43_fairness_multiseed_domain_class.csv`
+- `data_processed/r59_acceptance_gate/source_tables/r43_active_results.csv`
+- `data_processed/r59_acceptance_gate/source_tables/r43_family8n_results.csv`
+- `data_processed/r59_acceptance_gate/source_tables/r59_acceptance_decision_dashboard.csv`
+- `data_processed/r59_acceptance_gate/source_tables/r59_error_burden_two_seed_summary.csv`
+- `data_processed/r59_acceptance_gate/source_tables/r59_public_literature_additions.csv`
+- `outputs/r59/r59_acceptance_gate_summary.md`
+- `figures/autcon_r59/`
+
+Boundary: the R59 source tables are derived, non-sensitive outputs. Raw RDD images, downloaded archives, trained weights, active manuscripts, cover letters, internal round reports, and local path registries are not redistributed. The error-burden table is a two-seed diagnostic and should not be cited as a three-seed pooled statistic.
 
 ## V19 Manuscript-Facing Derived Outputs
 

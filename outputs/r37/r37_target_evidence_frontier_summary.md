@@ -33,6 +33,6 @@ R37 recomputes prediction exports, calibration bins, and confidence frontiers on
 
 ## Files
 
-- Summary CSV: `R:\NAS_DRIVE\IMUT\1-Research_Output\1-Papers\1_In_Preparation\2026-TRC-RoadDamage-DomainGeneralization\data_processed\r37_target_evidence_frontier\r37_target_evidence_frontier_summary.csv`
-- Figure PNG: `R:\NAS_DRIVE\IMUT\1-Research_Output\1-Papers\1_In_Preparation\2026-TRC-RoadDamage-DomainGeneralization\submission_package\JCICE_RoadDamageDG_2026-05-22\figures_enhanced\fig16_r37_target_evidence_confidence_frontier.png`
-- Figure SVG: `R:\NAS_DRIVE\IMUT\1-Research_Output\1-Papers\1_In_Preparation\2026-TRC-RoadDamage-DomainGeneralization\submission_package\JCICE_RoadDamageDG_2026-05-22\figures_enhanced\fig16_r37_target_evidence_confidence_frontier.svg`
+- Summary CSV: `data_processed/r37_target_evidence_frontier/r37_target_evidence_frontier_summary.csv`
+- Figure PNG: derived figure retained in the private submission package; not redistributed in this public package.
+- Figure SVG: derived figure retained in the private submission package; not redistributed in this public package.

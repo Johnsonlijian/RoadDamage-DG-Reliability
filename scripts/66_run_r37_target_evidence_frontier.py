@@ -29,8 +29,8 @@ R36_RESULTS = ROOT / "data_processed" / "r36_target_domain_evidence" / "r36_yolo
 OUT_DIR = ROOT / "data_processed" / "r37_target_evidence_frontier"
 PRED_DIR = OUT_DIR / "predictions"
 CAL_DIR = OUT_DIR / "calibration"
-FIG_DIR = ROOT / "submission_package" / "JCICE_RoadDamageDG_2026-05-22" / "figures_enhanced"
-ROUND_DIR = ROOT / "rounds" / "R37_target_evidence_frontier_2026-05-22"
+FIG_DIR = ROOT / "figures" / "paper_figures"
+RUN_STATE_DIR = ROOT / "outputs" / "r37" / "run_state"
 SUMMARY_MD = ROOT / "outputs" / "r37" / "r37_target_evidence_frontier_summary.md"
 
 
@@ -384,8 +384,15 @@ def fmt(value: object, digits: int = 4) -> str:
         return str(value)
 
 
+def public_path(path: Path) -> str:
+    try:
+        return path.resolve().relative_to(ROOT.resolve()).as_posix()
+    except ValueError:
+        return path.as_posix()
+
+
 def write_reports(summary_rows: list[dict[str, object]], figure_paths: tuple[Path, Path]) -> None:
-    ROUND_DIR.mkdir(parents=True, exist_ok=True)
+    RUN_STATE_DIR.mkdir(parents=True, exist_ok=True)
     SUMMARY_MD.parent.mkdir(parents=True, exist_ok=True)
     summary_csv = OUT_DIR / "r37_target_evidence_frontier_summary.csv"
     fieldnames = [
@@ -472,23 +479,23 @@ def write_reports(summary_rows: list[dict[str, object]], figure_paths: tuple[Pat
             "",
             "## Files",
             "",
-            f"- Summary CSV: `{summary_csv}`",
-            f"- Figure PNG: `{figure_paths[0]}`",
-            f"- Figure SVG: `{figure_paths[1]}`",
+            f"- Summary CSV: `{public_path(summary_csv)}`",
+            f"- Figure PNG: `{public_path(figure_paths[0])}`",
+            f"- Figure SVG: `{public_path(figure_paths[1])}`",
         ]
     )
     text = "\n".join(lines) + "\n"
     SUMMARY_MD.write_text(text, encoding="utf-8")
-    (ROUND_DIR / "R37_AUDIT_REPORT.md").write_text(text, encoding="utf-8")
-    (ROUND_DIR / "round_state.md").write_text(
+    (RUN_STATE_DIR / "R37_AUDIT_REPORT.md").write_text(text, encoding="utf-8")
+    (RUN_STATE_DIR / "round_state.md").write_text(
         "\n".join(
             [
                 "# R37 Round State",
                 "",
                 "- Status: completed",
                 "- Increment: post-R36 prediction-export calibration and confidence-frontier audit.",
-                f"- Summary: `{SUMMARY_MD}`",
-                f"- Figure: `{figure_paths[0]}`",
+                f"- Summary: `{public_path(SUMMARY_MD)}`",
+                f"- Figure: `{public_path(figure_paths[0])}`",
                 "",
             ]
         ),
